@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAD - Estúdio de Desenvolvimento Sob Medida</title>
+    <meta name="description" content="Desenvolvimento de sites, sistemas sob medida, automatizações, bots de Discord/WhatsApp e plugins de Minecraft. Tire seu projeto do papel.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=2500">
+    <!-- GSAP Animation Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        /* Estilos inline para evitar problemas de cache do navegador */
+        .hero-service-shortcuts {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shortcuts-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: left;
+        }
+
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .shortcut-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px !important;
+            padding: 14px 20px !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+            cursor: pointer !important;
+        }
+
+        .shortcut-btn svg {
+            color: #6f42fb !important; /* var(--primary) */
+            transition: all 0.3s ease !important;
+            flex-shrink: 0;
+        }
+
+        .shortcut-btn:hover {
+            background-color: #6f42fb !important; /* var(--primary) */
+            border-color: #6f42fb !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(111, 66, 251, 0.45) !important;
+        }
+
+        .shortcut-btn:hover svg {
+            color: #ffffff !important;
+            transform: scale(1.1) rotate(5deg) !important;
+        }
+
+        @media (max-width: 900px) {
+            .shortcuts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 580px) {
+            .shortcuts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-wrapper">
+                    <img src="images/logo-lead-only.png" alt="LEAD" class="logo-img">
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Menu de Navegação">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12" class="line-1"></line>
+                    <line x1="3" y1="6" x2="21" y2="6" class="line-2"></line>
+                    <line x1="3" y1="18" x2="21" y2="18" class="line-3"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#categorias" class="nav-link">Serviços</a>
+                <a href="#portfolio" class="nav-link">Portfólio</a>
+                <a href="#orcamento" class="nav-link">Orçamento</a>
+            </nav>
+
+            <!-- Navbar Actions -->
+            <div class="navbar-actions">
+                <div class="lang-selector">
+                    <button class="lang-btn" title="Alterar idioma (Português)">
+                        <img src="https://flagcdn.com/w40/br.png" alt="Brasil" width="20">
+                    </button>
+                </div>
+
+                <button class="theme-toggle-btn" id="theme-toggle" title="Alternar tema">
+                    <!-- Moon Icon -->
+                    <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <!-- Sun Icon -->
+                    <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+
+                <a href="login.html" class="client-area-btn" id="auth-btn" style="text-decoration:none;">
+                    <img src="images/client-area-logo.png" alt="LEAD Logo" class="client-btn-icon">
+                    <span id="auth-btn-text">Entrar / Registrar</span>
+                </a>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    if(localStorage.getItem('isLoggedIn') === 'true') {
+                        document.getElementById("auth-btn-text").innerText = "Área do Cliente";
+                        document.getElementById("auth-btn").href = "area-cliente.html";
+                    }
+                });
+            </script>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-layout">
+        <!-- HERO SECTION -->
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-container main-hero-banner">
+                <div class="hero-content">
+                    <!-- Slide 1: Sites & E-commerce -->
+                    <div class="hero-slide active" data-slide="1">
+                        <div class="pill-badge">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="currentColor" class="star-icon">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span>DESENVOLVIMENTO DE ALTA PERFORMANCE</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Sites e Lojas de <span class="gradient-text">Alta Conversão</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">
+                            Desenvolvimento sob medida de <span class="highlight">Landing Pages, E-commerces e Lojas Dropshipping</span>.
+                        </p>
+
+                        <div class="hero-actions-container">
+                            <div class="main-actions-side" style="flex-direction: row; width: 100%; gap: 16px;">
+                                <a href="#orcamento" class="btn-side btn-side-primary" onclick="selectCategoryForm('site')" style="flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                                    </svg>
+                                    <span>Desenvolver um Site</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side btn-side-secondary" onclick="selectCategoryForm('site-dropship')" style="flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg>
+                                    <span>Ecommerce / Dropshipping</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Sistemas & Painéis -->
+                    <div class="hero-slide" data-slide="2">
+                        <div class="pill-badge">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="currentColor" class="star-icon">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span>SISTEMAS SOB MEDIDA</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Sistemas Web e <span class="gradient-text">Painéis Administrativos</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">
+                            Soluções corporativas completas, <span class="highlight">dashboards em tempo real e APIs robustas</span>.
+                        </p>
+
+                        <div class="hero-actions-container">
+                            <div class="main-actions-side" style="flex-direction: row; width: 100%; gap: 16px;">
+                                <a href="#orcamento" class="btn-side btn-side-primary" onclick="selectCategoryForm('sistema')" style="flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                    <span>Sistemas via Web</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side btn-side-secondary" onclick="selectCategoryForm('sistema')" style="flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="16 18 22 12 16 6"></polyline>
+                                        <polyline points="8 6 2 12 8 18"></polyline>
+                                    </svg>
+                                    <span>Programas</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side btn-side-secondary" onclick="selectCategoryForm('sistema')" style="flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4.5 16.5c-1.5 1.26-2 3.5-2 3.5s2.24-.5 3.5-2L15 9l-6-6L4.5 16.5z"></path>
+                                        <path d="M13 15l6 6"></path>
+                                    </svg>
+                                    <span>Launchers</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Minecraft & GTA V -->
+                    <div class="hero-slide" data-slide="3">
+                        <div class="pill-badge">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="currentColor" class="star-icon">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span>Desenvolvimento sem limites (<span class="badge-minecraft">Minecraft</span> + <span class="badge-fivem">FiveM</span>)</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Do bloco ao asfalto, <span class="gradient-text">a diversão é garantida!</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">
+                            Aventuras épicas, amigos e muita zoeira em <span class="highlight">dois mundos incríveis</span>!
+                        </p>
+
+                        <div class="hero-actions-container">
+                            <div class="main-actions-side" style="flex-direction: row; width: 100%; gap: 16px;">
+                                <a href="minecraft.html" class="btn-side shortcut-minecraft-world" style="background: linear-gradient(135deg, #6f42fb 0%, #512da8 100%); border: 1px solid rgba(111, 66, 251, 0.4); box-shadow: 0 4px 15px rgba(111, 66, 251, 0.3); flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                                        <line x1="15" y1="3" x2="15" y2="21"></line>
+                                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                                        <line x1="3" y1="15" x2="21" y2="15"></line>
+                                    </svg>
+                                    <span>Mundo Minecraft</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side shortcut-gta-world" onclick="selectCategoryForm('sistema')" style="background: linear-gradient(135deg, #76b852 0%, #59a52c 100%); border: 1px solid rgba(89, 165, 44, 0.4); box-shadow: 0 4px 15px rgba(89, 165, 44, 0.3); flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 22h4l6-12 6 12h4L12 2z"/>
+                                    </svg>
+                                    <span>Mundo FiveM</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Bots & Automação -->
+                    <div class="hero-slide" data-slide="4">
+                        <div class="pill-badge">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="currentColor" class="star-icon">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span>AUTOMAÇÃO INTELIGENTE</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Criação de <span class="gradient-text">Bots Inteligentes</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">
+                            Automação inteligente e integrada para <span class="highlight">WhatsApp, Discord e Telegram</span>.
+                        </p>
+
+                        <div class="hero-actions-container">
+                            <div class="main-actions-side" style="flex-direction: row; width: 100%; gap: 16px;">
+                                <a href="#orcamento" class="btn-side shortcut-whatsapp" onclick="selectCategoryForm('bots-whatsapp')" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); border: 1px solid rgba(37, 211, 102, 0.4); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    <span>Bots para WhatsApp</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side shortcut-discord" onclick="selectCategoryForm('bots-discord')" style="background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%); border: 1px solid rgba(88, 101, 242, 0.4); box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                    <span>Bots para Discord</span>
+                                </a>
+                                <a href="#orcamento" class="btn-side shortcut-telegram" onclick="selectCategoryForm('sistema')" style="background: linear-gradient(135deg, #0088cc 0%, #006699 100%); border: 1px solid rgba(0, 136, 204, 0.4); box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3); flex: 1; color: #ffffff !important;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                    <span>Bots para Telegram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slideshow de Ilustrações -->
+                <div class="hero-slideshow" id="hero-slideshow">
+                    <div class="slideshow-img active" style="background-image: url('images/hero-slide-1.png?v=14'); background-size: cover; background-position: right center;"></div>
+                    <div class="slideshow-img" style="background-image: url('images/hero-slide-2.png?v=13'); background-size: cover; background-position: right center;"></div>
+                    <div class="slideshow-img" style="background-image: url('images/hero-slide-3.png?v=14'); background-size: cover; background-position: right center;"></div>
+                    <div class="slideshow-img" style="background-image: url('images/hero-slide-4.png?v=17'); background-size: cover; background-position: right center;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 CATEGORIES SECTION (MATCHING BANNER SLIDES) -->
+        <section class="categories-section" id="categorias">
+            <div class="section-header">
+                <h2 class="section-title">Como podemos te ajudar?</h2>
+                <p class="section-subtitle">Selecione uma categoria para conhecer nossas especialidades e iniciar seu projeto.</p>
+            </div>
+
+            <div class="categories-container-home">
+                <!-- Card 1: Sites & Lojas (Slide 1) -->
+                <article class="category-card-home">
+                    <div class="category-header-home">
+                        <div class="category-icon-wrapper-home purple-theme">
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <span class="category-badge-home">E-commerce & Lojas</span>
+                    </div>
+                    <div class="category-body-home">
+                        <h3 class="category-title-home">Sites e Lojas de Alta Conversão</h3>
+                        <p class="category-description-home">
+                            Desenvolvimento sob medida de Landing Pages, E-commerces e Lojas Dropshipping otimizados para alta performance e conversão.
+                        </p>
+                    </div>
+                    <div class="category-footer-home">
+                        <a href="#orcamento" class="btn btn-secondary btn-block" onclick="selectCategoryForm('site')">Orçar Site Próprio</a>
+                    </div>
+                </article>
+
+                <!-- Card 2: Sistemas & Painéis (Slide 2) -->
+                <article class="category-card-home">
+                    <div class="category-header-home">
+                        <div class="category-icon-wrapper-home blue-theme">
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <span class="category-badge-home">Sistemas Web & APIs</span>
+                    </div>
+                    <div class="category-body-home">
+                        <h3 class="category-title-home">Sistemas e Painéis Administrativos</h3>
+                        <p class="category-description-home">
+                            Soluções corporativas completas, dashboards em tempo real, programas, launchers e APIs robustas para o seu negócio.
+                        </p>
+                    </div>
+                    <div class="category-footer-home">
+                        <a href="#orcamento" class="btn btn-primary btn-block" onclick="selectCategoryForm('sistema')">Orçamento</a>
+                        <a href="sistemas.html" class="btn btn-secondary btn-block">Conferir nossos produtos prontos</a>
+                    </div>
+                </article>
+
+                <!-- Card 3: Jogos: Minecraft & FiveM (Slide 3) -->
+                <article class="category-card-home">
+                    <div class="category-header-home">
+                        <div class="category-icon-wrapper-home green-theme">
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="9" y1="3" x2="9" y2="21"></line>
+                                <line x1="15" y1="3" x2="15" y2="21"></line>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="3" y1="15" x2="21" y2="15"></line>
+                            </svg>
+                        </div>
+                        <span class="category-badge-home">Minecraft + FiveM</span>
+                    </div>
+                    <div class="category-body-home">
+                        <h3 class="category-title-home">Desenvolvimento sem Limites</h3>
+                        <p class="category-description-home">
+                            Plugins, scripts e addons personalizados para servidores de Minecraft e FiveM. Do bloco ao asfalto, a diversão é garantida!
+                        </p>
+                    </div>
+                    <div class="category-footer-home">
+                        <a href="minecraft.html" class="btn btn-primary btn-block">Minecraft</a>
+                        <a href="#orcamento" class="btn btn-secondary btn-block" onclick="selectCategoryForm('sistema')">FiveM</a>
+                    </div>
+                </article>
+
+                <!-- Card 4: Bots Inteligentes & Automação (Slide 4) -->
+                <article class="category-card-home">
+                    <div class="category-header-home">
+                        <div class="category-icon-wrapper-home bot-theme">
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <span class="category-badge-home">WhatsApp, Discord & Telegram</span>
+                    </div>
+                    <div class="category-body-home">
+                        <h3 class="category-title-home">Criação de Bots Inteligentes</h3>
+                        <p class="category-description-home">
+                            Automação inteligente e integrada para WhatsApp, Discord e Telegram. Atendimento 24/7, moderadores e logs em tempo real.
+                        </p>
+                    </div>
+                    <div class="category-footer-home">
+                        <a href="#orcamento" class="btn btn-primary btn-block" onclick="selectCategoryForm('bots-whatsapp')">Orçar Bot Personalizado</a>
+                        <a href="#portfolio" class="btn btn-secondary btn-block">Conferir bots prontos</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section class="showcase-section" id="portfolio">
+            <div class="section-header">
+                <h2 class="section-title">Portfólio & Projetos Realizados</h2>
+                <p class="section-subtitle">Confira alguns dos nossos projetos mais recentes entregues com máxima qualidade.</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="product-tag">Site</span>
+                        <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="product-card-body">
+                        <h4 class="product-title">E-commerce Drop Shipping Pro</h4>
+                        <p class="product-desc">Plataforma completa integrada com fornecedores globais, checkout transparente automatizado e alta conversão mobile.</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="product-tag">Sistema</span>
+                        <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="product-card-body">
+                        <h4 class="product-title">Painel de Gestão e Automação Fiscal</h4>
+                        <p class="product-desc">Automatização de emissão de notas fiscais, conciliação bancária inteligente e dashboard gráfico interativo.</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <span class="product-tag">WhatsApp/Bot</span>
+                        <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="product-card-body">
+                        <h4 class="product-title">Bot de Vendas & Suporte 24/7</h4>
+                        <p class="product-desc">Assistente virtual integrado com inteligência artificial para atendimento, agendamento de consultas e cobranças no WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORÇAMENTO/CONTATO FORM SECTION -->
+        <section class="orcamento-section" id="orcamento">
+            <div class="section-header">
+                <h2 class="section-title">Solicite seu Orçamento Gratuito</h2>
+                <p class="section-subtitle">Preencha o formulário abaixo e nossa equipe entrará em contato em menos de 24 horas.</p>
+            </div>
+
+            <div class="orcamento-container">
+                <form id="orcamento-form" class="budget-form">
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="orc-name">Seu Nome</label>
+                            <input type="text" id="orc-name" required placeholder="Digite seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="orc-email">Seu E-mail</label>
+                            <input type="email" id="orc-email" required placeholder="seuemail@exemplo.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="orc-phone">Telefone / WhatsApp</label>
+                            <input type="text" id="orc-phone" required placeholder="(99) 99999-9999">
+                        </div>
+                        <div class="form-group">
+                            <label for="orc-category">Categoria do Projeto</label>
+                            <select id="orc-category" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="site">Desenvolver um Site (Institucional, Clínicas, etc.)</option>
+                                <option value="site-dropship">Site E-commerce & Dropshipping</option>
+                                <option value="sistema">Sistemas e Programas (Automações, APIs, Launchers)</option>
+                                <option value="plugins">Plugins | Scripts | Bots (Minecraft, WhatsApp, Discord)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orc-desc">Fale sobre seu Projeto</label>
+                        <textarea id="orc-desc" rows="5" required placeholder="Descreva os detalhes e funcionalidades que você deseja no seu projeto..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit-orc">
+                        <span>Enviar Solicitação</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="site-footer">
+        <div class="footer-card-container">
+            <div class="footer-card">
+                <div class="footer-top-grid">
+                    <!-- Column 1: Brand Info -->
+                    <div class="footer-brand-col">
+                        <div class="footer-logo">
+                            <img src="images/logo-v4.png" alt="LEAD" class="footer-logo-img">
+                        </div>
+                        <div class="footer-copyright">
+                            &copy; 2026 LEAD. Todos os direitos reservados.
+                        </div>
+                        <p class="footer-slogan">
+                            Fundada em 2026, com o intuito de fazer parte do mercado e trazer experiências incríveis para o usuário.
+                        </p>
+                    </div>
+
+                    <!-- Column 2: Informações -->
+                    <div class="footer-box-card">
+                        <h4 class="footer-box-title">INFORMAÇÕES</h4>
+                        <ul class="footer-links-list">
+                            <li><a href="#portfolio">Documentação</a></li>
+                            <li><a href="javascript:void(0)" onclick="openTermsModal(event)">Termos de Serviço</a></li>
+                            <li><a href="#">API para Desenvolvedores</a></li>
+                            <li><a href="#categorias">Nossa equipe</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Redes Sociais -->
+                    <div class="footer-box-card">
+                        <h4 class="footer-box-title">REDES SOCIAIS</h4>
+                        <p class="footer-social-desc">
+                            Acompanhe novidades, anúncios, promoções e atualizações nas redes sociais.
+                        </p>
+                        <div class="footer-social-icons">
+                            <!-- Discord -->
+                            <a href="https://discord.gg" target="_blank" class="footer-social-btn" aria-label="Discord">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.893a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                                </svg>
+                            </a>
+                            <!-- YouTube -->
+                            <a href="https://youtube.com" target="_blank" class="footer-social-btn" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <!-- TikTok -->
+                            <a href="https://tiktok.com" target="_blank" class="footer-social-btn" aria-label="TikTok">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.83.57-1.35 1.55-1.34 2.56.01 1.05.56 2.07 1.46 2.62.9.56 2.08.62 3.03.19.95-.41 1.65-1.33 1.75-2.36.06-2.58.02-5.16.03-7.74z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://instagram.com" target="_blank" class="footer-social-btn" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="footer-bottom-bar">
+                    <div class="footer-bottom-left">
+                        LEAD &bull; Estúdio de Desenvolvimento Sob Medida
+                    </div>
+                    <div class="footer-bottom-right">
+                        Desenvolvido por <a href="https://leadev.com" target="_blank" rel="noopener">leadev.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CLIENT AREA LOGIN MODAL -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-modal-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-body">
+                <div class="logo modal-logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <span class="logo-text">LEAD</span>
+                </div>
+                <h2>Área do Cliente</h2>
+                <p>Acesse seu painel para gerenciar seus projetos contratados.</p>
+                <form id="login-form" onsubmit="handleUserLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">E-mail ou Usuário</label>
+                        <input type="text" id="login-email" required placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" required placeholder="Sua senha secreta">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS OF USE MODAL -->
+    <div class="modal-overlay" id="terms-modal">
+        <div class="modal-content terms-modal-content">
+            <button class="close-modal-btn" id="close-terms-modal-btn" onclick="closeTermsModal(event)" aria-label="Fechar">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="terms-modal-header">
+                <div class="terms-icon-wrapper">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                </div>
+                <h2 class="terms-modal-title">Termos de Uso</h2>
+            </div>
+
+            <div class="terms-modal-body-card">
+                <div class="terms-scroll-area">
+                    <p class="terms-intro"><strong>Prezado usuário,</strong></p>
+                    <p>
+                        Agradecemos por acessar a plataforma da <strong>LEAD</strong> (<span class="terms-highlight">leadev.com</span>).
+                    </p>
+                    <p>
+                        A <strong>LEAD</strong> é especializada no desenvolvimento sob medida e fornecimento de sistemas digitais, landing pages, e-commerces, bots de automação e plugins personalizados. Ao utilizar nossos serviços e produtos, você concorda expressamente em observar e cumprir os Termos de Uso descritos abaixo.
+                    </p>
+
+                    <h4 class="terms-section-subtitle">1. Aceitação e Elegibilidade</h4>
+                    <p>
+                        Ao navegar em nosso site ou contratar um dos nossos serviços, você confirma que leu, compreendeu e concorda com todas as disposições contidas nestes Termos e na nossa Política de Privacidade.
+                    </p>
+
+                    <h4 class="terms-section-subtitle">2. Desenvolvimento Sob Medida e Licenciamento</h4>
+                    <p>
+                        Todos os códigos, bots, sistemas e plugins fornecidos pela LEAD são desenvolvidos com foco em alta performance, segurança e otimização. A utilização de produtos adquiridos através de nossas lojas ou formulários de orçamento segue as especificações acordadas no momento da contratação.
+                    </p>
+
+                    <h4 class="terms-section-subtitle">3. Propriedade Intelectual</h4>
+                    <p>
+                        Todos os materiais visuais, códigos-fonte, artes, marcas e conteúdos presentes na plataforma da LEAD são de propriedade exclusiva do estúdio ou devidamente licenciados, sendo proibida a reprodução ou redistribuição não autorizada.
+                    </p>
+
+                    <h4 class="terms-section-subtitle">4. Suporte Técnico e Garantia</h4>
+                    <p>
+                        Oferecemos atendimento técnico especializado para garantir a estabilidade e o bom funcionamento dos produtos entregues, conforme o plano contratado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="terms-modal-footer">
+                <button class="btn btn-primary terms-accept-btn" id="accept-terms-btn" onclick="closeTermsModal(event)">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Lido e Aceito</span>
+                </button>
+            </div>
+        </div>
+    <!-- PAYMENT APPROVAL MODAL -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal-content payment-modal-content">
+            <button class="close-modal-btn" onclick="closePaymentModal(event)" aria-label="Fechar">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="payment-modal-header">
+                <div class="payment-icon-badge" id="payment-status-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <h3 class="payment-modal-title" id="payment-modal-title">Aguardando Pagamento</h3>
+                <span class="payment-modal-subtitle" id="payment-modal-subtitle">Escaneie o QR Code Pix para liberar o plugin na sua conta.</span>
+            </div>
+
+            <div class="payment-body-card">
+                <!-- Order Summary -->
+                <div class="payment-order-summary">
+                    <span class="pm-summary-label">RESUMO DO PEDIDO</span>
+                    <div id="payment-items-list" class="pm-items-list">
+                        <!-- Items list -->
+                    </div>
+                    <div class="pm-total-row">
+                        <span>Total:</span>
+                        <strong id="payment-total-price">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <!-- Pix Box -->
+                <div class="payment-pix-box" id="payment-pix-box">
+                    <div class="pix-qr-dummy">
+                        <svg viewBox="0 0 24 24" width="70" height="70" stroke="#3b82f6" stroke-width="1.5" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 17h3v3h-3z"></path></svg>
+                    </div>
+                    <span class="pix-code-text">00020126580014br.gov.bcb.pix0136lead-pagamentos-minecraft-2026</span>
+                </div>
+
+                <!-- Status Banner -->
+                <div class="payment-status-banner status-pending" id="payment-status-banner">
+                    <span class="status-dot"></span>
+                    <span id="payment-status-text">Status: Aguardando confirmação do Pix...</span>
+                </div>
+            </div>
+
+            <div class="payment-modal-footer">
+                <button class="pd-buy-btn" id="simulate-pay-btn" onclick="approveCurrentPayment()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>Simular Aprovação de Pagamento</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIFIED PLUGIN DETAILS MODAL (SCREENSHOTS 1 & 2 STYLE) -->
+    <div class="modal-overlay" id="product-details-modal">
+        <div class="plugin-details-container">
+
+            <!-- Close Button Top Right -->
+            <button class="close-modal-btn pd-top-close-btn" onclick="closeProductDetailsModal(event)" aria-label="Fechar">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- LEFT SIDEBAR (SCREENSHOT 1) -->
+            <aside class="pd-sidebar">
+                <div class="pd-sidebar-content">
+                    <!-- Cover Header -->
+                    <div class="pd-sidebar-header">
+                        <img src="" id="pd-info-img" alt="Plugin Cover" class="pd-cover-img">
+                        <div class="pd-header-meta">
+                            <h2 class="pd-sidebar-title" id="pd-info-title">Leaf X1</h2>
+                            <span class="pd-sidebar-sales" id="pd-info-sales">60 vendas</span>
+                        </div>
+                    </div>
+
+                    <!-- Short Description -->
+                    <p class="pd-sidebar-desc" id="pd-info-desc">
+                        LeafX1 é um plugin completo de duelos para Minecraft, com múltiplas arenas, apostas, menus configuráveis, ranking, camarote, busca automática de oponentes, placeholders e integração com LeafMito.
+                    </p>
+
+                    <!-- Autores -->
+                    <div class="pd-sidebar-section">
+                        <span class="pd-section-label">AUTOR</span>
+                        <div class="pd-authors-row">
+                            <div class="pd-author-avatars">
+                                <span class="pd-avatar-badge">👤</span>
+                            </div>
+                            <span class="pd-authors-text">
+                                <span class="dev-tag-darkblue">DEV</span> Felipe Valério <span class="v-check">✔</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="pd-sidebar-divider"></div>
+
+                    <!-- Plataformas Colored Badges -->
+                    <div class="pd-sidebar-section">
+                        <span class="pd-section-label">PLATAFORMAS</span>
+                        <div class="pd-platforms-grid">
+                            <span class="pd-badge tag-java"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> <span>Java</span></span>
+                            <span class="pd-badge tag-spigot"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path></svg> <span>Spigot</span></span>
+                            <span class="pd-badge tag-paper"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg> <span>Paper</span></span>
+                            <span class="pd-badge tag-folia"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2L4 22h16L12 2z"></path></svg> <span>Folia</span></span>
+                            <span class="pd-badge tag-purpur"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="4"></rect></svg> <span>Purpur</span></span>
+                        </div>
+                    </div>
+
+                    <div class="pd-sidebar-divider"></div>
+
+                    <!-- Versões -->
+                    <div class="pd-sidebar-section">
+                        <span class="pd-section-label">VERSÕES</span>
+                        <div class="pd-platforms-grid">
+                            <span class="pd-badge tag-all-versions"><code>&lt;/&gt;</code> <span>Todas as versões</span></span>
+                        </div>
+                    </div>
+
+                    <div class="pd-sidebar-divider"></div>
+
+                    <!-- Buy / Cart CTA & Reviews Buttons -->
+                    <div class="pd-sidebar-cta">
+                        <button class="pd-buy-btn" id="pd-action-btn">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span id="pd-action-label">Adicionar ao Carrinho</span>
+                        </button>
+                        <button class="pd-reviews-btn" onclick="openReviewsListModal()">
+                            <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <span>Avaliações</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RIGHT MAIN CONTENT AREA (SCREENSHOTS 1 & 2) -->
+            <main class="pd-main-content">
+                <!-- Top Navigation Pill Tabs Bar -->
+                <div class="pd-top-nav-pills">
+                    <button class="pd-pill-tab active" onclick="switchDetailsTab('geral', this)">Geral</button>
+                    <button class="pd-pill-tab" onclick="switchDetailsTab('demonstracao', this)">Demonstração</button>
+                    <button class="pd-pill-tab" onclick="openReviewsListModal()">Avaliações</button>
+                </div>
+
+                <!-- Last Modified Badge -->
+                <div class="pd-last-updated-box">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Última alteração: 2 de junho de 2026</span>
+                </div>
+
+                <!-- Scrollable Body Content -->
+                <div class="pd-body-scroll-area" id="pd-tab-content-sobre">
+                    <!-- Hero Banner Card (Screenshot 1) -->
+                    <div class="pd-hero-banner-card">
+                        <div class="pd-hero-bg-art"></div>
+                        <div class="pd-hero-card-content">
+                            <span class="pd-hero-tag">DUELOS COMPETITIVOS</span>
+                            <h1 class="pd-hero-title" id="pd-hero-title-text">yBaterPonto</h1>
+                            <p class="pd-hero-desc" id="pd-hero-desc-text">
+                                Um sistema completo para transformar duelos em uma experiência competitiva, configurável e pronta para servidores que querem X1 com ranking, apostas, arenas e fluxo visual profissional.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="pd-intro-paragraph" id="pd-intro-paragraph-text">
+                        O plugin foi reformulado para entregar duelos mais modernos, estáveis e fáceis de configurar, com melhorias profundas em menus, comandos, arenas, apostas, inventário, mensagens, placeholders e integrações.
+                    </p>
+
+                    <!-- Recursos Principais Grid (Screenshot 2) -->
+                    <div class="pd-features-section">
+                        <h2 class="pd-sec-title">Recursos principais</h2>
+                        <p class="pd-sec-subtitle">Tudo que o servidor precisa para criar uma experiência de X1 completa.</p>
+
+                        <div class="pd-features-cards-grid">
+                            <!-- Card 1 -->
+                            <div class="pd-feature-card">
+                                <div class="pd-feat-icon-badge icon-blue">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <h4 class="pd-feat-card-title">Arenas simultâneas</h4>
+                                <p class="pd-feat-card-text">
+                                    Crie quantas arenas quiser, edite tudo in-game com <code>/x1 arena [nome]</code> e permita vários duelos ao mesmo tempo.
+                                </p>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="pd-feature-card">
+                                <div class="pd-feat-icon-badge icon-purple">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="#a855f7" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                </div>
+                                <h4 class="pd-feat-card-title">Apostas e economias</h4>
+                                <p class="pd-feat-card-text">
+                                    Use múltiplas economias, seletor no menu, aposta manual e convite direto com jogador, valor e economia definidos.
+                                </p>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="pd-feature-card">
+                                <div class="pd-feat-icon-badge icon-blue">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                                <h4 class="pd-feat-card-title">Ranking e busca</h4>
+                                <p class="pd-feat-card-text">
+                                    Fila automática com <code>/x1 buscar</code>, rankings por Elo, Abates e KDR, filtros Total, Mensal e Semanal.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Funcionalidades Bullet List (Screenshot 2) -->
+                    <div class="pd-func-list-section">
+                        <h3 class="pd-func-title">Funcionalidades</h3>
+                        <ul class="pd-func-bullet-list" id="pd-func-bullet-list">
+                            <li><strong>Múltiplas arenas:</strong> crie quantas arenas quiser e rode vários duelos simultâneos;</li>
+                            <li><strong>Gerenciamento in-game:</strong> configure arenas sem depender de edição manual em arquivos;</li>
+                            <li><strong>Kit por arena:</strong> cada arena pode ter seu próprio kit; itens próprios também podem ser permitidos, forçados ou desativados;</li>
+                            <li><strong>Inventário protegido:</strong> ao entrar em duelo com kit da arena, o inventário do jogador é salvo corretamente;</li>
+                            <li><strong>Camarote:</strong> jogadores podem assistir duelos em andamento;</li>
+                        </ul>
+                    </div>
+
+                    <!-- Demonstração (Vídeos e Fotos no final da página) -->
+                    <div class="pd-demo-media-section" id="pd-demo-section">
+                        <h3 class="pd-sec-title">Demonstração</h3>
+                        <p class="pd-sec-subtitle">Confira fotos e demonstrações práticas das funcionalidades do plugin.</p>
+                        <div class="pd-demo-media-grid">
+                            <div class="pd-demo-media-card">
+                                <img src="" id="pd-demo-img" alt="Demonstração do Plugin" class="pd-demo-preview-img">
+                                <div class="pd-demo-card-overlay">
+                                    <span class="pd-demo-badge">📷 Demonstração Oficial</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <!-- MODAL 1: REVIEWS LIST MODAL -->
+    <div class="modal-overlay" id="plugin-reviews-modal">
+        <div class="modal-content reviews-list-modal-content">
+            <button class="close-modal-btn" onclick="closeReviewsListModal()" aria-label="Fechar">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Summary Box -->
+            <div class="r-modal-summary-box">
+                <div class="r-summary-left">
+                    <div class="r-summary-score" id="rm-avg-score">0.0</div>
+                    <div class="r-summary-stars-row" id="rm-avg-stars">
+                        <!-- Stars rendered by JS -->
+                    </div>
+                    <div class="r-summary-count-text" id="rm-count-text">Baseada em 0 avaliações</div>
+                </div>
+                <button class="r-summary-rate-btn" onclick="openWriteReviewModal()">Avaliar</button>
+            </div>
+
+            <div class="r-modal-divider"></div>
+
+            <!-- Reviews Feed / Empty State -->
+            <div class="r-modal-feed" id="rm-feed-container">
+                <!-- If empty: "Não há nenhuma avaliação para este plugin ainda." -->
+            </div>
+
+            <!-- Footer Back Button -->
+            <div class="r-modal-footer">
+                <button class="r-modal-back-btn" onclick="closeReviewsListModal()">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span>Voltar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: WRITE REVIEW MODAL -->
+    <div class="modal-overlay" id="write-review-modal">
+        <div class="modal-content write-review-modal-content">
+            <!-- Center Star Badge -->
+            <div class="w-review-icon-badge">★</div>
+            <h3 class="w-review-title">Avaliar o plugin</h3>
+            <p class="w-review-subtitle">Compartilhe sua experiência com outros usuários</p>
+
+            <form style="width: 100%;" onsubmit="handleWriteReviewSubmit(event)">
+                <div class="w-review-section">
+                    <label class="w-review-label">Sua avaliação</label>
+                    <div class="w-star-picker" id="w-star-picker" onmouseleave="resetWriteReviewStarHover()">
+                        <span onclick="selectWriteReviewStar(1)" onmouseover="hoverWriteReviewStar(1)" data-wstar="1">★</span>
+                        <span onclick="selectWriteReviewStar(2)" onmouseover="hoverWriteReviewStar(2)" data-wstar="2">★</span>
+                        <span onclick="selectWriteReviewStar(3)" onmouseover="hoverWriteReviewStar(3)" data-wstar="3">★</span>
+                        <span onclick="selectWriteReviewStar(4)" onmouseover="hoverWriteReviewStar(4)" data-wstar="4">★</span>
+                        <span onclick="selectWriteReviewStar(5)" onmouseover="hoverWriteReviewStar(5)" data-wstar="5">★</span>
+                    </div>
+                </div>
+
+                <div class="w-review-section" style="margin-top: 14px;">
+                    <label class="w-review-label" for="w-review-text">Mensagem (opcional)</label>
+                    <div class="w-textarea-wrapper">
+                        <textarea id="w-review-text" maxlength="60" placeholder="Conte como foi sua experiência..." rows="3" oninput="updateReviewCharCount(this)"></textarea>
+                        <span class="w-char-counter" id="w-char-counter">0/60</span>
+                    </div>
+                </div>
+
+                <div class="w-review-actions">
+                    <button type="button" class="w-btn-cancel" onclick="closeWriteReviewModal()">Cancelar</button>
+                    <button type="submit" class="w-btn-submit">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Enviar Avaliação</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js?v=2400"></script>
+</body>
+</html>

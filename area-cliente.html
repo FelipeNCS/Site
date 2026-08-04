@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Cliente - Plataforma Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* BACKGROUND GLOW ORBS */
+        .glow-orb-1 {
+            position: absolute;
+            top: -10%; left: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(111, 66, 251, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(60px);
+        }
+        .glow-orb-2 {
+            position: absolute;
+            bottom: -10%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            filter: blur(50px);
+        }
+
+        /* Container Principal */
+        .dashboard-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(15, 16, 22, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dash-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, #a0a5b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dash-logout {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .dash-logout:hover {
+            color: #ef4444;
+        }
+
+        .empty-state {
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .empty-state h3 {
+            color: #7dd3fc;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .empty-state p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .dash-btn {
+            background: linear-gradient(135deg, #6f42fb 0%, #4a25be 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(111, 66, 251, 0.3);
+        }
+        .dash-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(111, 66, 251, 0.4);
+        }
+        
+        .mock-payment-alert {
+            display: none;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+
+    <div class="dashboard-container">
+        
+        <div class="mock-payment-alert" id="paymentAlert">
+            Aguardando integração com Mercado Pago para ativar sua assinatura.
+        </div>
+
+        <div class="dash-header">
+            <h1 class="dash-title">Meus Sistemas</h1>
+            <a href="login.html" class="dash-logout">Sair da conta</a>
+        </div>
+
+        <div class="empty-state">
+            <h3>Você ainda não possui sistemas ativos.</h3>
+            <p>Se você acabou de criar a conta, escolha um plano para iniciar.<br>(Em breve: Redirecionamento automático do Checkout Pro/Mercado Pago)</p>
+            <a href="sistemas.html" class="dash-btn">Ver Sistemas Disponíveis</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Simples lógica para demonstrar o fluxo de redirecionamento no frontend
+        const urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.get('status') === 'registered') {
+            document.getElementById('paymentAlert').style.display = 'block';
+            
+            if(urlParams.get('plan') !== 'none') {
+                document.getElementById('paymentAlert').innerHTML = `
+                    Sua conta foi criada! <br> 
+                    <span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado agora para o Checkout do Mercado Pago (Plano: ${urlParams.get('plan')}).</span>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
