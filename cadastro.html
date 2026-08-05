@@ -496,6 +496,7 @@
                 localStorage.setItem('token', authData.token);
                 localStorage.setItem('isLoggedIn', 'true');
                 localStorage.setItem('tenantId', authData.tenant.id);
+                localStorage.setItem('plan', authData.tenant.plan);
 
                 if (plan.includes('trial')) {
                     // Alert can be kept or removed; client-area handles it nicely now

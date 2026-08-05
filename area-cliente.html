@@ -253,21 +253,56 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         
-        // Verifica se veio de um cadastro
-        if(urlParams.get('status') === 'registered') {
-            const plan = urlParams.get('plan');
-            const isTrial = urlParams.get('trial') === 'true';
+        // Lê o plano do localStorage (persistido no login/cadastro) ou da URL
+        const plan = localStorage.getItem('plan') || urlParams.get('plan');
+        const isTrial = plan && plan.includes('trial');
+        
+        if (isTrial) {
+            const emptyState = document.getElementById('empty-state');
+            const systemsGrid = document.getElementById('systems-grid');
             
-            // Se for teste grátis, mostra o card de sistema
-            if (isTrial) {
+            emptyState.style.display = 'none';
+            systemsGrid.style.display = 'grid';
+
+            let planName = 'Básico';
+            if (plan && plan.includes('premium')) planName = 'Premium';
+            
+            systemsGrid.innerHTML = `
+                <div class="system-card">
+                    <div class="system-header">
+                        <div class="system-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <div class="system-info">
+                            <h3>Sistema PDV</h3>
+                            <p>Plano: ${planName} (Teste 4 dias)</p>
+                        </div>
+                    </div>
+                    <div class="system-status">
+                        <p>O sistema está quase pronto para você utilizar!</p>
+                        <p style="font-size: 0.75rem; color: rgba(52, 211, 153, 0.8); margin-top: 4px;">Aguardando liberação da conta teste.</p>
+                    </div>
+                    <a href="https://app.leadev.store" class="system-action">Acessar Sistema</a>
+                </div>
+            `;
+        } else if (plan && plan !== 'none' && plan !== 'null' && plan !== 'undefined') {
+            // Se tiver plano e não for trial, e o status for recém-registrado, mostra aviso de pagamento
+            if (urlParams.get('status') === 'registered') {
+                document.getElementById('paymentAlert').style.display = 'block';
+                document.getElementById('paymentAlert').innerHTML = `
+                    Sua conta foi criada! <br> 
+                    <span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado agora para o Checkout do Mercado Pago (Plano: ${plan}).</span>
+                `;
+            } else {
+                // Usuário logou normalmente e tem um plano pago ativo
                 const emptyState = document.getElementById('empty-state');
                 const systemsGrid = document.getElementById('systems-grid');
                 
                 emptyState.style.display = 'none';
                 systemsGrid.style.display = 'grid';
-
-                let planName = 'Básico';
-                if (plan && plan.includes('premium')) planName = 'Premium';
+                
+                let planName = 'Premium';
+                if (plan === 'basic') planName = 'Básico';
                 
                 systemsGrid.innerHTML = `
                     <div class="system-card">
@@ -277,22 +312,14 @@
                             </div>
                             <div class="system-info">
                                 <h3>Sistema PDV</h3>
-                                <p>Plano: ${planName} (Teste 4 dias)</p>
+                                <p>Plano: ${planName} (Ativo)</p>
                             </div>
                         </div>
                         <div class="system-status">
-                            <p>O sistema está quase pronto para você utilizar!</p>
-                            <p style="font-size: 0.75rem; color: rgba(52, 211, 153, 0.8); margin-top: 4px;">Aguardando liberação da conta teste.</p>
+                            <p>Sistema Ativo e Liberado!</p>
                         </div>
                         <a href="https://app.leadev.store" class="system-action">Acessar Sistema</a>
                     </div>
-                `;
-            } else if (plan && plan !== 'none') {
-                // Fluxo de pagamento
-                document.getElementById('paymentAlert').style.display = 'block';
-                document.getElementById('paymentAlert').innerHTML = `
-                    Sua conta foi criada! <br> 
-                    <span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado agora para o Checkout do Mercado Pago (Plano: ${plan}).</span>
                 `;
             }
         }
