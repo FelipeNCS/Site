@@ -328,7 +328,9 @@
             btn.style.opacity = '0.7';
 
             setTimeout(() => {
-                // Simula o login e redireciona para a Área do Cliente
+                // Simula o login
+                localStorage.setItem('isLoggedIn', 'true');
+                // Redireciona para a Área do Cliente
                 window.location.href = 'area-cliente.html';
             }, 1000);
         }
