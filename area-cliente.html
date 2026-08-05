@@ -1187,7 +1187,7 @@
             if(savedAvatar) {
                 document.getElementById('sidebar-avatar').src = savedAvatar;
             } else {
-                document.getElementById('sidebar-avatar').src = \`https://ui-avatars.com/api/?name=\${userName}&background=2a2b32&color=fff\`;
+                document.getElementById('sidebar-avatar').src = `https://ui-avatars.com/api/?name=${userName}&background=2a2b32&color=fff`;
             }
 
             // --- PLAN LOGIC ---
@@ -1207,7 +1207,7 @@
                 let planName = 'Básico';
                 if (plan && plan.includes('premium')) planName = 'Premium';
 
-                systemsGrid.innerHTML = \`
+                systemsGrid.innerHTML = `
                     <div class="item-card">
                         <div class="item-header">
                             <div class="item-icon">
@@ -1215,7 +1215,7 @@
                             </div>
                             <div class="item-info">
                                 <h3>Sistema PDV</h3>
-                                <p>Plano: \${planName} (Teste 4 dias)</p>
+                                <p>Plano: ${planName} (Teste 4 dias)</p>
                             </div>
                         </div>
                         <div class="item-status">
@@ -1224,12 +1224,12 @@
                         </div>
                         <a href="https://app.leadev.store" class="item-action">Acessar Sistema</a>
                     </div>
-                \`;
+                `;
             } else if (plan && plan !== 'none' && plan !== 'null' && plan !== 'undefined') {
                 if (urlParams.get('status') === 'registered') {
                     const pa = document.getElementById('paymentAlert');
                     pa.style.display = 'block';
-                    pa.innerHTML = \`Sua conta foi criada! <br><span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado para o Checkout (Plano: \${plan}).</span>\`;
+                    pa.innerHTML = `Sua conta foi criada! <br><span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado para o Checkout (Plano: ${plan}).</span>`;
                 } else {
                     emptyState.style.display = 'none';
                     systemsGrid.style.display = 'grid';
@@ -1238,7 +1238,7 @@
                     let planName = 'Premium';
                     if (plan === 'basic') planName = 'Básico';
                     
-                    systemsGrid.innerHTML = \`
+                    systemsGrid.innerHTML = `
                         <div class="item-card">
                             <div class="item-header">
                                 <div class="item-icon">
@@ -1246,7 +1246,7 @@
                                 </div>
                                 <div class="item-info">
                                     <h3>Sistema PDV</h3>
-                                    <p>Plano: \${planName} (Ativo)</p>
+                                    <p>Plano: ${planName} (Ativo)</p>
                                 </div>
                             </div>
                             <div class="item-status">
@@ -1254,7 +1254,7 @@
                             </div>
                             <a href="https://app.leadev.store" class="item-action">Acessar Sistema</a>
                         </div>
-                    \`;
+                    `;
                 }
             }
         }
