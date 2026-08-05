@@ -6,6 +6,7 @@
     <title>Login - Plataforma Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         body {
             background-color: #0b0c10;
@@ -115,6 +116,80 @@
             background: rgba(0, 0, 0, 0.5);
         }
 
+        /* Checkbox & Options */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            user-select: none;
+            position: relative;
+            padding-left: 28px;
+            transition: color 0.3s;
+        }
+        .remember-me:hover {
+            color: #fff;
+        }
+        .remember-me input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 18px;
+            width: 18px;
+            background-color: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .remember-me:hover input ~ .checkmark {
+            border-color: rgba(111, 66, 251, 0.5);
+        }
+        .remember-me input:checked ~ .checkmark {
+            background-color: #6f42fb;
+            border-color: #6f42fb;
+            box-shadow: 0 0 10px rgba(111, 66, 251, 0.4);
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .remember-me input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .remember-me .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 4px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .forgot-pwd {
+            color: #7dd3fc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .forgot-pwd:hover {
+            color: #fff;
+        }
+
         /* Submit Button */
         .auth-btn {
             width: 100%;
@@ -216,6 +291,17 @@
                 <input type="password" class="form-input" placeholder="••••••••" required>
             </div>
 
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="remember-chk" checked>
+                    <span class="checkmark"></span>
+                    Salvar login
+                </label>
+                <a href="#" class="forgot-pwd">Esqueceu a senha?</a>
+            </div>
+
+            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark" style="margin-bottom: 20px; display: flex; justify-content: center;"></div>
+
             <button type="submit" class="auth-btn">Entrar na Plataforma</button>
         </form>
 
@@ -227,6 +313,15 @@
     <script>
         function handleLogin(e) {
             e.preventDefault();
+            
+            // Verifica o token do Cloudflare Turnstile
+            const formData = new FormData(e.target);
+            const token = formData.get('cf-turnstile-response');
+            if (!token) {
+                alert("Por favor, resolva a verificação de segurança (Anti-bot).");
+                return;
+            }
+
             // Efeito visual de carregamento
             const btn = document.querySelector('.auth-btn');
             btn.innerHTML = 'Entrando...';
