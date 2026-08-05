@@ -417,8 +417,8 @@
                 const email = document.getElementById('email-input').value;
                 const password = document.getElementById('password-input').value;
 
-                // 1. Criar a Conta no Backend (Lembre-se: o localhost so funciona se a API estiver rodando no mesmo pc)
-                const authResponse = await fetch('http://localhost:3333/api/auth/register', {
+                // 1. Criar a Conta no Backend
+                const authResponse = await fetch('https://backend.leadev.store/api/auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -449,7 +449,7 @@
                     window.location.href = 'area-cliente.html';
                 } else {
                     btn.innerHTML = 'Gerando Pagamento Seguro...';
-                    const payResponse = await fetch('http://localhost:3333/api/payments/checkout', {
+                    const payResponse = await fetch('https://backend.leadev.store/api/payments/checkout', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

@@ -1283,7 +1283,7 @@
                 const mockTenantId = 'teste-' + Math.floor(Math.random() * 1000000);
                 const email = 'cliente@logado.com';
 
-                fetch('http://localhost:3333/api/payments/checkout', {
+                fetch('https://backend.leadev.store/api/payments/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
