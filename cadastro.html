@@ -337,9 +337,36 @@
                 return;
             }
 
-            btn.innerHTML = 'Enviando código...';
+            btn.innerHTML = 'Verificando...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
+
+            try {
+                // VERIFICA SE O E-MAIL/DOCUMENTO JÁ EXISTE ANTES DE ENVIAR O CÓDIGO
+                const checkResponse = await fetch('https://backend.leadev.store/api/auth/check', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, document: documentVal })
+                });
+
+                if (!checkResponse.ok) {
+                    const checkData = await checkResponse.json();
+                    alert('Erro: ' + (checkData.error || 'Este e-mail ou documento já está cadastrado.'));
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    return;
+                }
+            } catch (err) {
+                console.error("Erro na verificação de conta:", err);
+                alert("Erro de conexão com o backend. Verifique se o servidor está online.");
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+                return;
+            }
+
+            btn.innerHTML = 'Enviando código...';
 
             // Gera código de 6 digitos
             generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
