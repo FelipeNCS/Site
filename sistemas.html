@@ -1246,9 +1246,25 @@
                 </div>
             </div>
         </div>
+    <!-- MODAL DE SUCESSO TRIAL -->
+    <div class="plans-modal-overlay" id="success-trial-modal" onclick="closeSuccessTrialModal()">
+        <div class="plans-modal-content" onclick="event.stopPropagation()" style="max-width: 500px; text-align: center; padding: 40px;">
+            <div style="width: 80px; height: 80px; background: rgba(52, 211, 153, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <svg viewBox="0 0 24 24" width="40" height="40" stroke="#34d399" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h2 style="color: #fff; font-size: 1.8rem; margin-bottom: 12px;">Sistema Adicionado!</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 30px; line-height: 1.5;">O período de teste do seu sistema foi ativado e ele já está na sua lista pronto para ser utilizado.</p>
+            
+            <a href="#" id="btn-go-to-client" class="saas-action" style="display: flex; text-decoration: none;">Ir para Área do Cliente</a>
+        </div>
     </div>
 
     <script>
+        function closeSuccessTrialModal() {
+            document.getElementById('success-trial-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         // Lógica do Modal de Planos
         function openPlansModal(productId) {
             const modal = document.getElementById('plans-modal');
@@ -1280,11 +1296,27 @@
         // Lógica de Redirecionamento de Plano
         function handlePlanClick(plan, btnElement) {
             if (localStorage.getItem('isLoggedIn') === 'true') {
+                if (plan.includes('trial')) {
+                    // Show success popup directly
+                    const successModal = document.getElementById('success-trial-modal');
+                    const goBtn = document.getElementById('btn-go-to-client');
+                    goBtn.href = 'area-cliente.html?status=registered&plan=' + plan + '&product=pdv&trial=true';
+                    
+                    successModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Close other modals if open
+                    document.getElementById('product-details-modal').classList.remove('active');
+                    document.getElementById('plans-modal').classList.remove('active');
+                    return;
+                }
+
+                // If not trial, proceed to checkout
                 const originalText = btnElement.innerHTML;
                 btnElement.innerHTML = 'Carregando...';
                 btnElement.style.opacity = '0.7';
 
-                const mockTenantId = 'teste-' + Math.floor(Math.random() * 1000000);
+                const mockTenantId = localStorage.getItem('tenantId') || 'teste-' + Math.floor(Math.random() * 1000000);
                 const email = 'cliente@logado.com';
 
                 fetch('https://backend.leadev.store/api/payments/checkout', {
