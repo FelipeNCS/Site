@@ -200,37 +200,18 @@
 
         .turnstile-wrapper {
             position: relative;
-            padding: 3px; 
-            border-radius: 8px;
-            background: linear-gradient(90deg, #6f42fb, #2a1b54, #38bdf8, #2a1b54, #6f42fb);
-            background-size: 400% 400%;
-            animation: gradientBorder 3s ease infinite;
-            box-shadow: 0 0 20px rgba(111, 66, 251, 0.6);
+            padding: 2px; 
+            border-radius: 6px;
+            background: #0b0c10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1;
-        }
-
-        .turnstile-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(11,12,16,0.8) 3px, rgba(11,12,16,0.8) 6px);
-            border-radius: 8px;
-            z-index: -1;
-            pointer-events: none;
         }
 
         .turnstile-inner {
             background: #0b0c10;
-            border-radius: 5px;
+            border-radius: 4px;
             overflow: hidden;
             z-index: 2;
-        }
-
-        @keyframes gradientBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Particles */
