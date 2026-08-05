@@ -346,16 +346,11 @@
 
             try {
                 // ENVIA O EMAIL JS
-                // IMPORTANTE: Como não recebemos o Service ID e Template ID, o codigo abaixo envia por EmailJS.
-                // Mas ate que voce crie e adicione os IDs, ele esta testavel no console!
-                /*
-                await emailjs.send('COLOQUE_SEU_SERVICE_ID_AQUI', 'COLOQUE_SEU_TEMPLATE_ID_AQUI', {
+                await emailjs.send('service_ygdc60y', 'template_3valgwj', {
                     to_name: name,
                     to_email: email,
                     verification_code: generatedCode
                 });
-                */
-                console.log("CÓDIGO DE VERIFICAÇÃO GERADO (TESTE):", generatedCode);
 
                 // Mostra Modal de OTP
                 document.getElementById('display-email').innerText = email;
