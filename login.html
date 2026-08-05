@@ -190,6 +190,75 @@
             color: #fff;
         }
 
+        /* Turnstile Custom Wrapper */
+        .turnstile-container {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .turnstile-wrapper {
+            position: relative;
+            padding: 3px; 
+            border-radius: 8px;
+            background: linear-gradient(90deg, #6f42fb, #2a1b54, #38bdf8, #2a1b54, #6f42fb);
+            background-size: 400% 400%;
+            animation: gradientBorder 3s ease infinite;
+            box-shadow: 0 0 20px rgba(111, 66, 251, 0.6);
+            z-index: 1;
+        }
+
+        .turnstile-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(11,12,16,0.8) 3px, rgba(11,12,16,0.8) 6px);
+            border-radius: 8px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .turnstile-inner {
+            background: #0b0c10;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particles */
+        .ts-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #6f42fb;
+            box-shadow: 0 0 10px #38bdf8;
+            border-radius: 50%;
+            animation: floatParticle 2s ease-in-out infinite;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-40px) scale(0); opacity: 0; }
+        }
+
+        .ts-particle:nth-child(1) { left: 15%; animation-delay: 0s; animation-duration: 2.5s; }
+        .ts-particle:nth-child(2) { left: 35%; animation-delay: 0.5s; animation-duration: 3s; }
+        .ts-particle:nth-child(3) { left: 50%; animation-delay: 1s; animation-duration: 2.2s; }
+        .ts-particle:nth-child(4) { left: 65%; animation-delay: 0.2s; animation-duration: 2.8s; }
+        .ts-particle:nth-child(5) { left: 85%; animation-delay: 0.8s; animation-duration: 2.6s; }
+
         /* Submit Button */
         .auth-btn {
             width: 100%;
@@ -300,7 +369,18 @@
                 <a href="#" class="forgot-pwd">Esqueceu a senha?</a>
             </div>
 
-            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark" style="margin-bottom: 20px; display: flex; justify-content: center;"></div>
+            <div class="turnstile-container">
+                <div class="ts-particle"></div>
+                <div class="ts-particle"></div>
+                <div class="ts-particle"></div>
+                <div class="ts-particle"></div>
+                <div class="ts-particle"></div>
+                <div class="turnstile-wrapper">
+                    <div class="turnstile-inner">
+                        <div class="cf-turnstile" data-sitekey="3x00000000000000000000FF" data-theme="dark"></div>
+                    </div>
+                </div>
+            </div>
 
             <button type="submit" class="auth-btn">Entrar na Plataforma</button>
         </form>
