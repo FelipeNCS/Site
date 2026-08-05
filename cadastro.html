@@ -464,7 +464,7 @@
                 }
             } catch (err) {
                 console.error(err);
-                alert('Tudo certo com a verificação de Email!\n\nPorém, não foi possível conectar ao seu Backend (Servidor Local) para salvar a conta. O erro "Conexão Local" acontece porque a sua API não está online ainda. Quando você subir a API na VPS, basta trocar o link no código e vai funcionar perfeitamente!');
+                alert('O e-mail foi verificado com sucesso, mas ocorreu um erro de conexão com o nosso servidor Backend (API). Verifique se o backend está online e se as configurações do Coolify estão corretas.');
                 btn.innerHTML = originalText;
                 btn.style.opacity = '1';
             }
