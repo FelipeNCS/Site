@@ -3,157 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área do Cliente - Plataforma Premium</title>
+    <title>Área do Cliente - Lead</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: #0b0c10;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-sidebar: #0f1015;
+            --bg-card: #14151b;
+            --bg-card-hover: #1a1c23;
+            --border-color: rgba(255,255,255,0.05);
+            --primary: #6f42fb;
+            --primary-hover: #5a32d6;
+            --text-main: #ffffff;
+            --text-muted: rgba(255,255,255,0.5);
+            --success: #34d399;
+            --success-bg: rgba(52, 211, 153, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* App-like feel */
+        }
+
+        /* Layout */
+        .dashboard-layout {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
+        }
+
+        .sidebar-logo {
+            height: 32px;
+            /* Placeholder for Lead logo */
+            filter: drop-shadow(0 0 8px rgba(111,66,251,0.5));
+        }
+
+        .support-btn {
+            margin: 0 20px 10px 20px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+            transition: transform 0.2s;
+        }
+        .support-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .discord-btn {
+            margin: 0 20px 24px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .discord-btn:hover {
+            background: rgba(88, 101, 242, 0.2);
+            color: #5865F2;
+            border-color: rgba(88, 101, 242, 0.5);
+        }
+
+        .menu-title {
+            padding: 0 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 10px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        /* Custom scrollbar for sidebar */
+        .nav-menu::-webkit-scrollbar { width: 4px; }
+        .nav-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.03);
+            color: #fff;
+        }
+
+        .nav-link.active {
+            background: rgba(111, 66, 251, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .nav-link.active svg {
+            stroke: var(--primary);
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: none;
+            border: none;
+            color: #fff;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .profile-btn:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #2a2b32;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+        .profile-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+        }
+        .profile-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Profile Popup */
+        .profile-popup {
+            position: absolute;
+            bottom: 70px;
+            left: 20px;
+            width: 220px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+        .profile-popup.show {
+            display: flex;
+        }
+        .popup-item {
+            padding: 10px 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .popup-item:hover {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        .popup-item.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
             overflow: hidden;
             position: relative;
         }
 
-        /* BACKGROUND GLOW ORBS */
-        .glow-orb-1 {
-            position: absolute;
-            top: -10%; left: -10%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(111, 66, 251, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            filter: blur(60px);
-        }
-        .glow-orb-2 {
-            position: absolute;
-            bottom: -10%; right: -10%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            filter: blur(50px);
+        /* Topbar */
+        .topbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(11, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 5;
         }
 
-        /* Container Principal */
-        .dashboard-container {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(15, 16, 22, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 40px rgba(0,0,0,0.4);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+        }
+
+        .notification-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
             position: relative;
-            z-index: 1;
-            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .notification-btn:hover { color: #fff; }
+        .notification-badge {
+            position: absolute;
+            top: -5px; right: -5px;
+            background: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @keyframes slideUp {
+        /* View Container */
+        .view-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .view-container::-webkit-scrollbar { width: 8px; }
+        .view-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .dash-header {
+        /* --- DASHBOARD ELEMENTS --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .stat-icon {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            background: rgba(111, 66, 251, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-icon.green { background: rgba(52, 211, 153, 0.1); color: #34d399; }
+        .stat-icon.blue { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+        
+        .stat-info h4 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .stat-info p {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .updates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .update-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-left: 4px solid var(--primary);
+        }
+        .update-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
         }
-
-        .dash-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin: 0;
-            background: linear-gradient(135deg, #fff 0%, #a0a5b5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .dash-logout {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .dash-logout:hover {
-            color: #ef4444;
-        }
-
-        .empty-state {
-            background: rgba(0,0,0,0.3);
-            border: 1px dashed rgba(255,255,255,0.2);
-            border-radius: 16px;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .empty-state h3 {
-            color: #7dd3fc;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .empty-state p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-        }
-
-        .dash-btn {
-            background: linear-gradient(135deg, #6f42fb 0%, #4a25be 100%);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 24px;
-            font-size: 0.95rem;
+        .update-title {
+            font-size: 1.1rem;
             font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(111, 66, 251, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .dash-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(111, 66, 251, 0.4);
-        }
-        
-        .mock-payment-alert {
-            display: none;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #34d399;
-            padding: 15px;
+        .update-version {
+            background: rgba(111, 66, 251, 0.2);
+            color: #b197fc;
+            padding: 2px 8px;
             border-radius: 12px;
-            margin-bottom: 24px;
-            text-align: center;
-            font-weight: 500;
+            font-size: 0.75rem;
+        }
+        .update-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .update-desc {
+            color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        /* Systems Grid */
-        .systems-grid {
+        /* --- SYSTEMS/PLUGINS/BOTS GRID --- */
+        .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
         }
-        .system-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .item-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 24px;
             display: flex;
@@ -161,17 +441,16 @@
             gap: 16px;
             transition: all 0.3s ease;
         }
-        .system-card:hover {
+        .item-card:hover {
             border-color: rgba(111, 66, 251, 0.4);
             transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.05);
         }
-        .system-header {
+        .item-header {
             display: flex;
             align-items: center;
             gap: 16px;
         }
-        .system-icon {
+        .item-icon {
             width: 50px;
             height: 50px;
             background: rgba(111, 66, 251, 0.15);
@@ -181,147 +460,881 @@
             justify-content: center;
             color: #b197fc;
         }
-        .system-info h3 {
+        .item-info h3 {
             margin: 0 0 6px 0;
             font-size: 1.15rem;
             color: #fff;
         }
-        .system-info p {
+        .item-info p {
             margin: 0;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
+            color: var(--text-muted);
         }
-        .system-status {
+        .item-status {
             padding: 14px;
-            background: rgba(52, 211, 153, 0.1);
+            background: var(--success-bg);
             border-radius: 10px;
             border: 1px solid rgba(52, 211, 153, 0.2);
         }
-        .system-status p {
+        .item-status p {
             margin: 0;
-            color: #34d399;
+            color: var(--success);
             font-size: 0.85rem;
             font-weight: 500;
-            line-height: 1.5;
         }
-        .system-action {
+        .item-action {
             margin-top: auto;
-            background: #fff;
-            color: #000;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
             text-align: center;
             padding: 12px;
             border-radius: 10px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.2s ease;
         }
-        .system-action:hover {
-            background: #e0e0e0;
-            transform: scale(1.02);
+        .item-action:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .empty-state {
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 50px 20px;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+        .empty-state h3 { color: var(--text-muted); margin-bottom: 10px; font-weight: 500;}
+
+        /* --- LICENÇAS --- */
+        .licenses-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 1024px) {
+            .licenses-layout { grid-template-columns: 1fr; }
+        }
+        .ips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .ip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ip-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .ip-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(111, 66, 251, 0.1);
+            color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ip-details h4 { font-size: 1rem; margin-bottom: 4px; }
+        .ip-details p { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
+        .ip-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; }
+        .status-dot.online { background: #34d399; }
+        
+        .btn-plugins {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .buy-slot-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+        .buy-slot-card h3 { font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .buy-slot-price { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+        .buy-slot-features {
+            list-style: none; padding: 0; margin: 30px 0; text-align: left;
+        }
+        .buy-slot-features li {
+            margin-bottom: 12px; font-size: 0.9rem; color: var(--text-muted);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .buy-slot-features li svg { color: #34d399; }
+        .btn-buy {
+            width: 100%; background: #fff; color: #000; border: none; padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer;
+        }
+
+        /* --- ADIÇÕES --- */
+        .adicoes-info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .info-card-icon {
+            width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 16px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .info-card h4 { margin-bottom: 12px; font-size: 1.1rem; }
+        .info-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+        .accordion {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 20px; display: flex; align-items: center; gap: 10px; cursor: pointer;
+            background: rgba(255,255,255,0.02); font-weight: 600;
+        }
+        .accordion-content {
+            padding: 20px; border-top: 1px solid var(--border-color);
+        }
+        .rules-list { list-style: none; }
+        .rules-list li {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted);
+        }
+        .rules-list li svg { flex-shrink: 0; color: var(--primary); }
+
+        .requests-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+        }
+        .btn-new-request {
+            background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;
+        }
+
+        /* --- MODAL SETTINGS / AVATAR --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            z-index: 9999; display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .settings-modal {
+            background: var(--bg-sidebar); border: 1px solid var(--border-color);
+            width: 90%; max-width: 700px; border-radius: 20px; overflow: hidden;
+            display: flex; flex-direction: column; max-height: 85vh;
+        }
+        .settings-header {
+            padding: 24px; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .settings-content {
+            padding: 24px; overflow-y: auto; flex-grow: 1;
+        }
+        .settings-footer {
+            padding: 20px 24px; border-top: 1px solid var(--border-color);
+            display: flex; justify-content: flex-end; gap: 12px;
+        }
+        
+        .form-group { margin-bottom: 24px; }
+        .form-label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
+        .form-input {
+            width: 100%; background: var(--bg-card); border: 1px solid var(--border-color);
+            color: #fff; padding: 12px 16px; border-radius: 8px; font-family: inherit; font-size: 1rem;
+        }
+        
+        .avatar-categories {
+            display: flex; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;
+        }
+        .avatar-cat-btn {
+            background: none; border: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; padding: 8px 12px; border-radius: 8px;
+        }
+        .avatar-cat-btn.active { background: rgba(111,66,251,0.1); color: var(--primary); }
+        
+        .avatar-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 16px;
+        }
+        .avatar-option {
+            width: 80px; height: 80px; border-radius: 16px; background: #2a2b32; cursor: pointer;
+            border: 2px solid transparent; transition: all 0.2s; padding: 4px; object-fit: cover;
+        }
+        .avatar-option:hover { transform: scale(1.05); }
+        .avatar-option.selected { border-color: var(--primary); background: rgba(111,66,251,0.2); }
+
+        .btn-cancel { background: transparent; color: #fff; border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;}
+        .btn-save { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;}
+
+        /* Utilities */
+        .mock-payment-alert {
+            display: none; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399; padding: 15px; border-radius: 12px; margin-bottom: 24px; text-align: center;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .sidebar { position: fixed; left: -100%; height: 100%; }
+            .sidebar.open { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .topbar { padding: 0 20px; }
+            .view-container { padding: 20px; }
+            .adicoes-info-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-orb-1"></div>
-    <div class="glow-orb-2"></div>
-
-    <div class="dashboard-container">
+    <div class="dashboard-layout">
         
-        <div class="mock-payment-alert" id="paymentAlert">
-            Aguardando integração com Mercado Pago para ativar sua assinatura.
-        </div>
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <!-- Lead logo -->
+                <h2 style="color: #fff; font-weight: 800; font-size: 1.5rem; margin: 0; display: flex; align-items: center; gap: 10px;">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--primary)" stroke-width="3" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    Lead
+                </h2>
+            </div>
 
-        <div class="dash-header">
-            <h1 class="dash-title">Meus Sistemas</h1>
-            <a href="login.html" class="dash-logout" onclick="localStorage.removeItem('isLoggedIn')">Sair da conta</a>
-        </div>
+            <a href="https://wa.me/5547996186044" target="_blank" class="support-btn">
+                <span style="display:flex; align-items:center; gap:8px;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    24h Suporte Ativo
+                </span>
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
 
-        <div id="empty-state" class="empty-state">
-            <h3>Você ainda não possui sistemas ativos.</h3>
-            <p>Se você acabou de criar a conta, escolha um plano para iniciar.<br>(Em breve: Redirecionamento automático do Checkout Pro/Mercado Pago)</p>
-            <a href="sistemas.html" class="dash-btn">Ver Sistemas Disponíveis</a>
-        </div>
+            <a href="#" class="discord-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Discord da Lead
+            </a>
 
-        <div id="systems-grid" class="systems-grid" style="display: none;">
-            <!-- Cards will be injected here via JS -->
-        </div>
+            <div class="menu-title">Menu Principal</div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-target="dashboard">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-target="sistemas">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        Meus Sistemas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-target="plugins">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        Meus Plugins
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-target="bots">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16.01"></line><line x1="16" y1="16" x2="16" y2="16.01"></line></svg>
+                        Meus Bots
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-target="licencas">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        Licenças
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-target="adicoes">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                        Adições
+                    </a>
+                </li>
+            </ul>
 
+            <div class="sidebar-footer">
+                <button class="profile-btn" onclick="toggleProfilePopup(event)">
+                    <img src="https://ui-avatars.com/api/?name=User&background=2a2b32&color=fff" alt="Avatar" class="profile-avatar" id="sidebar-avatar">
+                    <div class="profile-info">
+                        <span class="profile-name" id="sidebar-name">Carregando...</span>
+                        <span class="profile-role">Cliente</span>
+                    </div>
+                </button>
+
+                <!-- Popup -->
+                <div class="profile-popup" id="profile-popup">
+                    <button class="popup-item" onclick="openSettingsModal()">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        Configurações
+                    </button>
+                    <button class="popup-item danger" onclick="logout()">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        Sair da conta
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="topbar">
+                <button class="mobile-menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                
+                <div class="topbar-right">
+                    <button class="notification-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <span class="notification-badge">0</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="view-container">
+                <div class="mock-payment-alert" id="paymentAlert"></div>
+
+                <!-- VIEW: DASHBOARD -->
+                <div id="view-dashboard" class="view-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Sistemas Adquiridos</h4>
+                                <p id="dash-sys-count">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Plugins Adquiridos</h4>
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16.01"></line><line x1="16" y1="16" x2="16" y2="16.01"></line></svg>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Bots Adquiridos</h4>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        Atualizações Recentes
+                    </h2>
+                    <div class="updates-list">
+                        <!-- Mock Updates -->
+                        <div class="update-card">
+                            <div class="update-header">
+                                <span class="update-title">LeadPDV <span class="update-version">v2.1.0</span></span>
+                                <span class="update-date"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 05/08/2026</span>
+                            </div>
+                            <p class="update-desc">Adicionado novo dashboard de relatórios financeiros e integração com Pix automatizado.</p>
+                        </div>
+                        <div class="update-card" style="border-left-color: #34d399;">
+                            <div class="update-header">
+                                <span class="update-title">LeadAuth Plugin <span class="update-version" style="background: rgba(52,211,153,0.2); color:#34d399;">v1.5.2</span></span>
+                                <span class="update-date"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 02/08/2026</span>
+                            </div>
+                            <p class="update-desc">Correção de bugs na autenticação via Discord e melhoria de performance no cache.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: SISTEMAS -->
+                <div id="view-sistemas" class="view-section">
+                    <h2 class="section-title">Meus Sistemas</h2>
+                    <div id="empty-state" class="empty-state">
+                        <h3>Você ainda não possui sistemas ativos.</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Adquira um plano ou inicie um teste grátis para começar.</p>
+                        <a href="sistemas.html" class="btn-new-request" style="text-decoration:none; display:inline-block;">Ver Sistemas Disponíveis</a>
+                    </div>
+                    <div id="systems-grid" class="grid-cards" style="display: none;">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- VIEW: PLUGINS -->
+                <div id="view-plugins" class="view-section">
+                    <h2 class="section-title">Meus Plugins</h2>
+                    <div class="empty-state">
+                        <h3>Você não possui plugins.</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Visite nossa loja para adquirir plugins exclusivos.</p>
+                    </div>
+                </div>
+
+                <!-- VIEW: BOTS -->
+                <div id="view-bots" class="view-section">
+                    <h2 class="section-title">Meus Bots</h2>
+                    <div class="empty-state">
+                        <h3>Você não possui bots.</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Automatize sua comunidade com nossos bots.</p>
+                    </div>
+                </div>
+
+                <!-- VIEW: LICENÇAS -->
+                <div id="view-licencas" class="view-section">
+                    <h2 class="section-title" style="margin-bottom: 5px;">Licenças</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">Gerencie seus IPs e servidores licenciados</p>
+                    
+                    <div class="stats-grid" style="margin-bottom: 30px;">
+                        <div class="stat-card" style="padding: 16px;">
+                            <div class="stat-icon" style="width: 48px; height: 48px; border-radius: 10px;">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                            </div>
+                            <div class="stat-info">
+                                <h4>IPS CADASTRADOS</h4>
+                                <p style="font-size: 1.4rem;">2</p>
+                            </div>
+                        </div>
+                        <div class="stat-card" style="padding: 16px;">
+                            <div class="stat-icon green" style="width: 48px; height: 48px; border-radius: 10px;">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            </div>
+                            <div class="stat-info">
+                                <h4>PLUGINS DISPONÍVEIS</h4>
+                                <p style="font-size: 1.4rem;">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="licenses-layout">
+                        <!-- Left: IPs List -->
+                        <div class="ips-container">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                                <h3 style="font-size: 1rem; display:flex; align-items:center; gap:10px;">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                    Seus IPs
+                                </h3>
+                                <span style="background: rgba(111,66,251,0.1); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight:600;">2 IPs</span>
+                            </div>
+                            
+                            <div class="ips-list">
+                                <div class="ip-card">
+                                    <div class="ip-left">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--text-muted)" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                        <div class="ip-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+                                        <div class="ip-details">
+                                            <h4>Servidor Principal</h4>
+                                            <p>187.0.164.227:13011</p>
+                                        </div>
+                                    </div>
+                                    <div class="ip-actions">
+                                        <div class="status-dot online" title="Online"></div>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="var(--text-muted)" stroke-width="2" fill="none" style="cursor:pointer;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                        <button class="btn-plugins"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z"></path></svg> Plugins</button>
+                                    </div>
+                                </div>
+                                <div class="ip-card">
+                                    <div class="ip-left">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--text-muted)" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                        <div class="ip-icon"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+                                        <div class="ip-details">
+                                            <h4>Servidor Secundário</h4>
+                                            <p>187.0.164.227:13023</p>
+                                        </div>
+                                    </div>
+                                    <div class="ip-actions">
+                                        <div class="status-dot" title="Offline"></div>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="var(--text-muted)" stroke-width="2" fill="none" style="cursor:pointer;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                        <button class="btn-plugins"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z"></path></svg> Plugins</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Buy Slot -->
+                        <div class="buy-slot-card">
+                            <h3 style="color:var(--text-muted);">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                Slot de IP
+                            </h3>
+                            <div class="buy-slot-price">R$ 10,00</div>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Pagamento via PIX/Cartão</p>
+                            
+                            <ul class="buy-slot-features">
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Ativação instantânea</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte incluso</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Sem limite de plugins no IP</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Troca de IP ilimitada</li>
+                            </ul>
+                            
+                            <button class="btn-buy" onclick="alert('Funcionalidade de compra em breve!')">Adquirir Slot</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: ADIÇÕES -->
+                <div id="view-adicoes" class="view-section">
+                    <h2 class="section-title" style="margin-bottom: 5px;">Adições</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">Solicite novos sistemas ou atualizações para plugins existentes.</p>
+                    
+                    <h3 style="font-size: 1rem; margin-bottom: 16px; display:flex; align-items:center; gap:8px;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        Como Funciona
+                    </h3>
+                    
+                    <div class="adicoes-info-cards">
+                        <div class="info-card">
+                            <div class="info-card-icon" style="background: rgba(111,66,251,0.1); color: var(--primary);">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            </div>
+                            <h4>Solicite</h4>
+                            <p>Os usuários podem solicitar adições de sistemas para os produtos já existentes através desta aba.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon" style="background: rgba(168,85,247,0.1); color: #a855f7;">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <h4>Análise</h4>
+                            <p>Nossa equipe analisará a solicitação e, se viável, enviará um orçamento através do próprio pedido.</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon" style="background: rgba(52,211,153,0.1); color: #34d399;">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </div>
+                            <h4>Atualização</h4>
+                            <p>Após o pagamento, atualizaremos o sistema/plugin em até 30 dias úteis com o recurso solicitado.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="#38bdf8" stroke-width="2" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            Informações Importantes
+                        </div>
+                        <div class="accordion-content" style="display: none;">
+                            <ul class="rules-list">
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Os orçamentos são pagos via PIX ou Mercado Pago.</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Após a atualização do sistema com o recurso solicitado, não há direito a estorno.</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle></svg> A equipe reserva-se ao direito de negar qualquer pedido que fuja do escopo do sistema.</li>
+                                <li><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> As adições são públicas. O recurso será integrado na versão oficial para todos os clientes.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="requests-header">
+                        <h3 style="font-size: 1.1rem; display:flex; align-items:center; gap:10px;">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+                            Minhas Solicitações
+                        </h3>
+                        <div style="display:flex; gap:12px;">
+                            <select style="background:var(--bg-card); color:#fff; border:1px solid var(--border-color); border-radius:8px; padding:8px 12px; outline:none;">
+                                <option>Todos os status</option>
+                                <option>Aguardando Pagamento</option>
+                                <option>Em Desenvolvimento</option>
+                                <option>Concluído</option>
+                            </select>
+                            <button class="btn-new-request" onclick="alert('Formulário em breve!')">+ Nova Solicitação</button>
+                        </div>
+                    </div>
+
+                    <div class="grid-cards">
+                        <div class="item-card">
+                            <div style="display:flex; justify-content:flex-end;">
+                                <span style="background:rgba(245,158,11,0.1); color:#f59e0b; padding:4px 10px; border-radius:12px; font-size:0.7rem; font-weight:700;">AGUARDANDO PAGAMENTO</span>
+                            </div>
+                            <h4 style="font-size:1rem; margin-top:-10px; line-height:1.4;">Integração com gateway de pagamento X no sistema...</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; display:flex; align-items:center; gap:6px;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--primary)" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> LeadPDV
+                            </p>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;">
+                                    <span style="color:var(--text-muted);">R$ 0,00 / R$ 50,00</span>
+                                    <span style="color:var(--text-muted);">0%</span>
+                                </div>
+                                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:3px;">
+                                    <div style="width:0%; height:100%; background:var(--primary); border-radius:3px;"></div>
+                                </div>
+                                <p style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">Faltam R$ 50,00</p>
+                            </div>
+                        </div>
+
+                        <div class="item-card">
+                            <div style="display:flex; justify-content:flex-end;">
+                                <span style="background:rgba(168,85,247,0.1); color:#a855f7; padding:4px 10px; border-radius:12px; font-size:0.7rem; font-weight:700;">EM DESENVOLVIMENTO</span>
+                            </div>
+                            <h4 style="font-size:1rem; margin-top:-10px; line-height:1.4;">Adicionar sistema de cupons na tela de checkout...</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; display:flex; align-items:center; gap:6px;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--primary)" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> LeadPDV
+                            </p>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;">
+                                    <span style="color:var(--text-muted);">Pagamento concluído. Solicitação em desenvolvimento.</span>
+                                </div>
+                                <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:3px;">
+                                    <div style="width:100%; height:100%; background:#a855f7; border-radius:3px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: SETTINGS (Avatar/Name) -->
+    <div class="modal-overlay" id="settings-modal" onclick="if(event.target===this) closeSettingsModal()">
+        <div class="settings-modal">
+            <div class="settings-header">
+                <h3 style="font-size: 1.2rem; margin: 0;">Configurações do Perfil</h3>
+                <button style="background:none; border:none; color:var(--text-muted); cursor:pointer;" onclick="closeSettingsModal()">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="settings-content">
+                <div class="form-group">
+                    <label class="form-label">Nome de Exibição</label>
+                    <input type="text" class="form-input" id="setting-name-input" value="">
+                </div>
+                
+                <label class="form-label">Avatar</label>
+                <div class="avatar-categories">
+                    <button class="avatar-cat-btn active" onclick="switchAvatarCat('networks', this)">Networks</button>
+                    <button class="avatar-cat-btn" onclick="switchAvatarCat('empresas', this)">Empresas</button>
+                    <button class="avatar-cat-btn" onclick="switchAvatarCat('jogos', this)">Jogos</button>
+                </div>
+                
+                <!-- Avatar Grid -->
+                <div class="avatar-grid" id="avatar-grid-container">
+                    <!-- JS will populate -->
+                </div>
+            </div>
+            <div class="settings-footer">
+                <button class="btn-cancel" onclick="closeSettingsModal()">Cancelar</button>
+                <button class="btn-save" onclick="saveSettings()">Salvar Alterações</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        // Lê o plano do localStorage (persistido no login/cadastro) ou da URL
-        const plan = localStorage.getItem('plan') || urlParams.get('plan');
-        const isTrial = plan && plan.includes('trial');
-        
-        if (isTrial) {
-            const emptyState = document.getElementById('empty-state');
-            const systemsGrid = document.getElementById('systems-grid');
-            
-            emptyState.style.display = 'none';
-            systemsGrid.style.display = 'grid';
+        // --- ROUTER LOGIC ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const viewSections = document.querySelectorAll('.view-section');
 
-            let planName = 'Básico';
-            if (plan && plan.includes('premium')) planName = 'Premium';
-            
-            systemsGrid.innerHTML = `
-                <div class="system-card">
-                    <div class="system-header">
-                        <div class="system-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                        </div>
-                        <div class="system-info">
-                            <h3>Sistema PDV</h3>
-                            <p>Plano: ${planName} (Teste 4 dias)</p>
-                        </div>
-                    </div>
-                    <div class="system-status">
-                        <p>O sistema está quase pronto para você utilizar!</p>
-                        <p style="font-size: 0.75rem; color: rgba(52, 211, 153, 0.8); margin-top: 4px;">Aguardando liberação da conta teste.</p>
-                    </div>
-                    <a href="https://app.leadev.store" class="system-action">Acessar Sistema</a>
-                </div>
-            `;
-        } else if (plan && plan !== 'none' && plan !== 'null' && plan !== 'undefined') {
-            // Se tiver plano e não for trial, e o status for recém-registrado, mostra aviso de pagamento
-            if (urlParams.get('status') === 'registered') {
-                document.getElementById('paymentAlert').style.display = 'block';
-                document.getElementById('paymentAlert').innerHTML = `
-                    Sua conta foi criada! <br> 
-                    <span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado agora para o Checkout do Mercado Pago (Plano: ${plan}).</span>
-                `;
-            } else {
-                // Usuário logou normalmente e tem um plano pago ativo
-                const emptyState = document.getElementById('empty-state');
-                const systemsGrid = document.getElementById('systems-grid');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('data-target');
                 
+                // Update active class on links
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Update active view
+                viewSections.forEach(v => v.classList.remove('active'));
+                document.getElementById('view-' + target).classList.add('active');
+
+                // Close mobile sidebar if open
+                document.getElementById('sidebar').classList.remove('open');
+            });
+        });
+
+        // --- PROFILE POPUP ---
+        function toggleProfilePopup(e) {
+            e.stopPropagation();
+            document.getElementById('profile-popup').classList.toggle('show');
+        }
+        document.addEventListener('click', () => {
+            document.getElementById('profile-popup').classList.remove('show');
+        });
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+
+        // --- DATA BINDING ---
+        function loadUserData() {
+            const userName = localStorage.getItem('userName') || 'Usuário';
+            document.getElementById('sidebar-name').innerText = userName;
+            
+            // Load custom avatar if exists
+            const savedAvatar = localStorage.getItem('userAvatar');
+            if(savedAvatar) {
+                document.getElementById('sidebar-avatar').src = savedAvatar;
+            } else {
+                document.getElementById('sidebar-avatar').src = \`https://ui-avatars.com/api/?name=\${userName}&background=2a2b32&color=fff\`;
+            }
+
+            // --- PLAN LOGIC ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = localStorage.getItem('plan') || urlParams.get('plan');
+            const isTrial = plan && plan.includes('trial');
+
+            const systemsGrid = document.getElementById('systems-grid');
+            const emptyState = document.getElementById('empty-state');
+            const dashSysCount = document.getElementById('dash-sys-count');
+
+            if (isTrial) {
                 emptyState.style.display = 'none';
                 systemsGrid.style.display = 'grid';
-                
-                let planName = 'Premium';
-                if (plan === 'basic') planName = 'Básico';
-                
-                systemsGrid.innerHTML = `
-                    <div class="system-card">
-                        <div class="system-header">
-                            <div class="system-icon">
+                dashSysCount.innerText = '1';
+
+                let planName = 'Básico';
+                if (plan && plan.includes('premium')) planName = 'Premium';
+
+                systemsGrid.innerHTML = \`
+                    <div class="item-card">
+                        <div class="item-header">
+                            <div class="item-icon">
                                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                             </div>
-                            <div class="system-info">
+                            <div class="item-info">
                                 <h3>Sistema PDV</h3>
-                                <p>Plano: ${planName} (Ativo)</p>
+                                <p>Plano: \${planName} (Teste 4 dias)</p>
                             </div>
                         </div>
-                        <div class="system-status">
-                            <p>Sistema Ativo e Liberado!</p>
+                        <div class="item-status">
+                            <p>Quase pronto!</p>
+                            <p style="font-size: 0.75rem; color: rgba(52, 211, 153, 0.8); margin-top: 4px;">Aguardando liberação da conta teste.</p>
                         </div>
-                        <a href="https://app.leadev.store" class="system-action">Acessar Sistema</a>
+                        <a href="https://app.leadev.store" class="item-action">Acessar Sistema</a>
                     </div>
-                `;
+                \`;
+            } else if (plan && plan !== 'none' && plan !== 'null' && plan !== 'undefined') {
+                if (urlParams.get('status') === 'registered') {
+                    const pa = document.getElementById('paymentAlert');
+                    pa.style.display = 'block';
+                    pa.innerHTML = \`Sua conta foi criada! <br><span style="opacity:0.8; font-size:0.85rem">Você seria redirecionado para o Checkout (Plano: \${plan}).</span>\`;
+                } else {
+                    emptyState.style.display = 'none';
+                    systemsGrid.style.display = 'grid';
+                    dashSysCount.innerText = '1';
+                    
+                    let planName = 'Premium';
+                    if (plan === 'basic') planName = 'Básico';
+                    
+                    systemsGrid.innerHTML = \`
+                        <div class="item-card">
+                            <div class="item-header">
+                                <div class="item-icon">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                                </div>
+                                <div class="item-info">
+                                    <h3>Sistema PDV</h3>
+                                    <p>Plano: \${planName} (Ativo)</p>
+                                </div>
+                            </div>
+                            <div class="item-status">
+                                <p>Sistema Ativo e Liberado!</p>
+                            </div>
+                            <a href="https://app.leadev.store" class="item-action">Acessar Sistema</a>
+                        </div>
+                    \`;
+                }
             }
+        }
+
+        // --- AVATAR SYSTEM ---
+        const avatars = {
+            networks: [
+                'https://ui-avatars.com/api/?name=Hype&background=ef4444&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=Rede&background=3b82f6&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=MC&background=10b981&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=Craft&background=f59e0b&color=fff&size=128'
+            ],
+            empresas: [
+                'https://ui-avatars.com/api/?name=Lead&background=6f42fb&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=Tech&background=0f172a&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=Host&background=0284c7&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=Dev&background=4f46e5&color=fff&size=128'
+            ],
+            jogos: [
+                'https://ui-avatars.com/api/?name=GTA&background=22c55e&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=MTA&background=0ea5e9&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=RUST&background=d97706&color=fff&size=128',
+                'https://ui-avatars.com/api/?name=CS&background=eab308&color=fff&size=128'
+            ]
+        };
+
+        let selectedAvatarUrl = '';
+
+        function openSettingsModal() {
+            document.getElementById('settings-modal').classList.add('active');
+            document.getElementById('setting-name-input').value = localStorage.getItem('userName') || 'Usuário';
+            
+            // Render default category
+            switchAvatarCat('networks', document.querySelector('.avatar-cat-btn.active'));
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+
+        function switchAvatarCat(cat, btn) {
+            document.querySelectorAll('.avatar-cat-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+
+            const container = document.getElementById('avatar-grid-container');
+            container.innerHTML = '';
+
+            avatars[cat].forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'avatar-option';
+                if(url === selectedAvatarUrl || url === localStorage.getItem('userAvatar')) {
+                    img.classList.add('selected');
+                }
+                img.onclick = () => {
+                    document.querySelectorAll('.avatar-option').forEach(i => i.classList.remove('selected'));
+                    img.classList.add('selected');
+                    selectedAvatarUrl = url;
+                };
+                container.appendChild(img);
+            });
+        }
+
+        function saveSettings() {
+            const newName = document.getElementById('setting-name-input').value;
+            if(newName) {
+                localStorage.setItem('userName', newName);
+            }
+            if(selectedAvatarUrl) {
+                localStorage.setItem('userAvatar', selectedAvatarUrl);
+            }
+            closeSettingsModal();
+            loadUserData(); // Refresh UI
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadUserData);
+        
+        // Se a pessoa logar e n tiver token, redireciona (Mock security)
+        if (!localStorage.getItem('isLoggedIn')) {
+            // window.location.href = 'login.html'; // Uncomment to enforce login locally
         }
     </script>
 </body>
