@@ -4339,8 +4339,8 @@ body.light-theme .form-group textarea {
 .hero-modern {
     margin: 15px; /* Creates the background gap */
     border-radius: 30px; /* Rounded corners */
-    padding-top: 130px;
-    padding-bottom: 80px; /* Add padding at the bottom instead of forcing full height */
+    padding-top: 100px;
+    padding-bottom: 30px;
     background: #0a0a0c;
     display: flex;
     flex-direction: column;
@@ -4356,7 +4356,7 @@ body.light-theme .form-group textarea {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 0 20px;
 }
 
