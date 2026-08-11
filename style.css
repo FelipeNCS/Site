@@ -4214,7 +4214,7 @@ body.light-theme .form-group textarea {
    NEW MODERN UI STYLES (HOME OVERHAUL)
 ========================================== */
 
-/* Navbar Modern */
+/* Navbar Modern (Dark Theme) */
 .navbar-modern {
     position: fixed;
     top: 20px;
@@ -4223,12 +4223,12 @@ body.light-theme .form-group textarea {
     width: 90%;
     max-width: 1000px;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(10, 10, 15, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
 
@@ -4236,7 +4236,7 @@ body.light-theme .form-group textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 20px;
+    padding: 10px 24px;
 }
 
 .logo-modern {
@@ -4244,18 +4244,12 @@ body.light-theme .form-group textarea {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #111;
+    color: #fff;
 }
 
 .logo-modern .logo-img {
-    height: 32px;
-    filter: invert(1);
-}
-
-.logo-modern .logo-text {
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -0.5px;
+    height: 24px;
+    /* removed invert to keep it white */
 }
 
 .nav-menu-modern {
@@ -4266,9 +4260,9 @@ body.light-theme .form-group textarea {
 
 .nav-link-modern {
     text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -4276,7 +4270,7 @@ body.light-theme .form-group textarea {
 }
 
 .nav-link-modern:hover {
-    color: #000;
+    color: #fff;
 }
 
 .navbar-actions-modern {
@@ -4289,7 +4283,7 @@ body.light-theme .form-group textarea {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #555;
+    color: rgba(255,255,255,0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4297,14 +4291,14 @@ body.light-theme .form-group textarea {
 }
 
 .lang-btn-modern:hover {
-    color: #000;
+    color: #fff;
 }
 
 .btn-modern {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 25px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
@@ -4313,48 +4307,77 @@ body.light-theme .form-group textarea {
 }
 
 .btn-outline {
-    border: 1px solid #ddd;
-    color: #111;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
     background: transparent;
 }
 
 .btn-outline:hover {
-    border-color: #999;
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.05);
 }
 
 .btn-filled {
-    background: #111;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background: #fff;
+    color: #111;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.1);
 }
 
 .btn-filled:hover {
-    background: #6f42fb; /* Purple hover */
-    box-shadow: 0 4px 15px rgba(111,66,251,0.4);
+    background: #f0f0f0;
     transform: translateY(-2px);
 }
 
-.btn-black {
-    background: #111;
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 30px;
-}
-
-.btn-black:hover {
-    background: #222;
-    transform: translateY(-2px);
-}
-
-/* Hero Modern */
+/* Hero Modern (Dark Theme) */
 .hero-modern {
     padding-top: 130px;
-    background: #fdfdfd;
+    background: #0a0a0c;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: #111;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-modern-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.hero-modern-content-left {
+    flex: 1;
+    max-width: 700px;
+}
+
+.hero-modern-bg-glow {
+    position: absolute;
+    top: 50%;
+    right: -20%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(66, 135, 245, 0.15) 0%, rgba(66, 135, 245, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-modern-bg-glow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    box-shadow: inset -20px 0 60px rgba(111, 66, 251, 0.4);
 }
 
 .logos-strip {
@@ -4415,127 +4438,37 @@ body.light-theme .form-group textarea {
 }
 
 .hero-modern-title {
-    font-size: 4rem;
-    font-weight: 600;
+    font-size: 3.8rem;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     letter-spacing: -1px;
 }
 
-.highlight-purple {
-    color: #6f42fb;
+.highlight-gradient {
+    background: linear-gradient(90deg, #ff6b6b 0%, #ff8e53 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.highlight-blue {
+    color: #4287f5;
 }
 
 .hero-modern-subtitle {
-    font-size: 1.1rem;
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto 35px;
-}
-
-/* Hero Software Container */
-.hero-software-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    border-radius: 30px;
-    overflow: hidden;
-    transform: translateY(0);
-    transition: transform 0.5s cubic-bezier(0.1, 0.7, 0.1, 1);
-}
-
-.hero-software-bg {
-    position: relative;
-    width: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-    background: #000;
-}
-
-.hero-software-bg img {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0.8;
-}
-
-.software-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(15,15,20,0.95) 0%, rgba(15,15,20,0.7) 40%, transparent 100%);
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #fff;
-    border-radius: 30px;
-}
-
-.badge-modern {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 25px;
-    width: max-content;
-}
-
-.software-title {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    max-width: 500px;
-}
-
-.software-desc {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: rgba(255, 255, 255, 0.7);
-    max-width: 450px;
-    margin-bottom: 35px;
-    line-height: 1.5;
+    margin-bottom: 40px;
+    line-height: 1.6;
 }
 
-.software-actions {
-    display: flex;
-    gap: 15px;
-}
-
-.btn-white {
-    background: #fff;
-    color: #111;
-    padding: 12px 24px;
-}
-
-.btn-white:hover {
-    background: #eee;
-}
-
-.btn-glass {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    padding: 12px 24px;
-}
-
-.btn-glass:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
+/* Removed old software container styles */
 
 /* Glass Cards Section */
 .features-glass-section {
     padding: 100px 20px;
-    background: #fdfdfd;
+    background: #0a0a0c;
 }
 
 .glass-container {
@@ -4558,10 +4491,10 @@ body.light-theme .form-group textarea {
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 20px 24px;
     display: flex;
@@ -4569,25 +4502,25 @@ body.light-theme .form-group textarea {
     gap: 20px;
     cursor: pointer;
     transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .glass-card:hover, .glass-card.active {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateX(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border-color: rgba(111, 66, 251, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border-color: rgba(111, 66, 251, 0.4);
 }
 
 .glass-card-icon {
     width: 48px;
     height: 48px;
-    background: #f4f4f4;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #111;
+    color: #fff;
     transition: all 0.3s ease;
 }
 
@@ -4603,41 +4536,27 @@ body.light-theme .form-group textarea {
 .glass-card-content h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #111;
+    color: #fff;
 }
 
 .glass-card-arrow {
-    color: #999;
+    color: rgba(255,255,255,0.5);
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .glass-card:hover .glass-card-arrow, .glass-card.active .glass-card-arrow {
     transform: translateX(5px);
-    color: #111;
+    color: #fff;
 }
-
-.glass-image-display {
-    flex: 1.5;
-    border-radius: 24px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.glass-image-display img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.glass-image-display img.fade-out {
-    opacity: 0;
-    transform: scale(1.02);
-}
-
 /* Responsive adjustments */
 @media (max-width: 900px) {
+    .hero-modern-bg-glow {
+        right: -50%;
+        opacity: 0.5;
+    }
+    .hero-modern-title {
+        font-size: 2.8rem;
+    }
     .glass-container {
         flex-direction: column;
         height: auto;
@@ -4654,15 +4573,8 @@ body.light-theme .form-group textarea {
     .logos-slider {
         justify-content: center;
     }
-    .software-overlay {
-        padding: 30px;
-        background: linear-gradient(to bottom, rgba(15,15,20,0.8) 0%, rgba(15,15,20,0.95) 100%);
-        justify-content: flex-end;
-    }
-    .software-title {
-        font-size: 2rem;
-    }
     .nav-menu-modern {
         display: none;
     }
 }
+
