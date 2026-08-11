@@ -4452,6 +4452,54 @@ body.light-theme .form-group textarea {
     opacity: 0.6;
 }
 
+.badge-modern {
+    display: inline-flex;
+    align-items: center;
+    background: #1a1b23; /* Dark card background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px; /* Fully rounded pill */
+    padding: 6px 16px 6px 6px; /* Extra padding on right, tight on left for the icon */
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.badge-modern:hover {
+    background: #23242e;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.badge-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.badge-logo {
+    height: 12px;
+    /* Adjust if logo needs specific sizing */
+}
+
+.badge-arrow {
+    margin-left: 8px;
+    opacity: 0.6;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.badge-modern:hover .badge-arrow {
+    transform: translateX(3px);
+    opacity: 1;
+}
+
 .hero-modern-content {
     text-align: center;
     max-width: 800px;
