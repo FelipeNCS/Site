@@ -4444,15 +4444,15 @@ body.light-theme .form-group textarea {
 .hero-modern-content {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 60px;
+    margin: 0 auto 40px;
     padding: 0 20px;
 }
 
 .hero-modern-title {
-    font-size: 3.8rem;
-    font-weight: 400; /* Lighter font weight for minimalist look */
-    line-height: 1.1;
-    margin-bottom: 24px;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
     letter-spacing: -0.5px;
 }
 
@@ -4461,6 +4461,7 @@ body.light-theme .form-group textarea {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
 }
 
 .highlight-blue {
@@ -4468,10 +4469,13 @@ body.light-theme .form-group textarea {
 }
 
 .hero-modern-subtitle {
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 40px;
-    line-height: 1.6;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Removed old software container styles */
