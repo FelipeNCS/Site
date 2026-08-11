@@ -4221,7 +4221,7 @@ body.light-theme .form-group textarea {
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 1200px; /* Matched with hero container width */
+    max-width: 1440px; /* Matched with hero container width */
     z-index: 1000;
     background: transparent;
     border: 1px solid transparent;
@@ -4356,9 +4356,9 @@ body.light-theme .form-group textarea {
     z-index: 2;
     display: flex;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 20px auto;
-    padding: 0 20px;
+    padding: 0 40px; /* Increased padding slightly for very large screens */
 }
 
 .hero-modern-content-left {
