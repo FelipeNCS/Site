@@ -4481,7 +4481,7 @@ body.light-theme .form-group textarea {
 }
 
 .badge-logo {
-    height: 18px; /* Slightly larger since it doesn't have the white circle wrapper anymore */
+    height: 20px; /* Aumentado para melhor leitura */
 }
 
 .badge-arrow {
