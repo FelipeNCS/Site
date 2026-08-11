@@ -4340,8 +4340,8 @@ body.light-theme .form-group textarea {
     margin: 15px; /* Creates the background gap */
     border-radius: 30px; /* Rounded corners */
     padding-top: 130px;
+    padding-bottom: 80px; /* Add padding at the bottom instead of forcing full height */
     background: #0a0a0c;
-    min-height: calc(100vh - 30px); /* Adjust for margins */
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -4356,7 +4356,7 @@ body.light-theme .form-group textarea {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    margin: 80px auto;
+    margin: 40px auto;
     padding: 0 20px;
 }
 
