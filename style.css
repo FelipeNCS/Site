@@ -4477,16 +4477,11 @@ body.light-theme .form-group textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
     margin-right: 12px;
 }
 
 .badge-logo {
-    height: 12px;
-    /* Adjust if logo needs specific sizing */
+    height: 18px; /* Slightly larger since it doesn't have the white circle wrapper anymore */
 }
 
 .badge-arrow {
