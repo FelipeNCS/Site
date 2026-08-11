@@ -4456,10 +4456,10 @@ body.light-theme .form-group textarea {
     display: inline-flex;
     align-items: center;
     background: #1a1b23; /* Dark card background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Cinza claro para maior destaque */
     border-radius: 40px; /* Fully rounded pill */
     padding: 6px 16px 6px 6px; /* Extra padding on right, tight on left for the icon */
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.85rem;
     font-weight: 500;
     text-decoration: none;
