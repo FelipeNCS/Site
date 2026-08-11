@@ -4220,7 +4220,7 @@ body.light-theme .form-group textarea {
     top: 35px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: calc(100% - 30px); /* Exactly matches hero banner width */
     max-width: 1440px; /* Matched with hero container width */
     z-index: 1000;
     background: transparent;
@@ -4242,7 +4242,7 @@ body.light-theme .form-group textarea {
 .navbar-modern-container {
     display: flex;
     align-items: center;
-    padding: 10px 24px;
+    padding: 10px 40px; /* Matched with hero container padding */
 }
 
 .logo-modern {
