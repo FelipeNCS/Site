@@ -4478,7 +4478,7 @@ body.light-theme .form-group textarea {
 /* Glass Cards Section */
 .features-glass-section {
     padding: 100px 20px;
-    background: #0a0a0c;
+    background: transparent; /* Pega o fundo claro do body */
 }
 
 .glass-container {
@@ -4501,10 +4501,10 @@ body.light-theme .form-group textarea {
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     padding: 20px 24px;
     display: flex;
@@ -4512,25 +4512,25 @@ body.light-theme .form-group textarea {
     gap: 20px;
     cursor: pointer;
     transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
 .glass-card:hover, .glass-card.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     transform: translateX(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    border-color: rgba(111, 66, 251, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-color: rgba(111, 66, 251, 0.2);
 }
 
 .glass-card-icon {
     width: 48px;
     height: 48px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #f4f4f4;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #111;
     transition: all 0.3s ease;
 }
 
@@ -4546,17 +4546,17 @@ body.light-theme .form-group textarea {
 .glass-card-content h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #fff;
+    color: #111;
 }
 
 .glass-card-arrow {
-    color: rgba(255,255,255,0.5);
+    color: #999;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .glass-card:hover .glass-card-arrow, .glass-card.active .glass-card-arrow {
     transform: translateX(5px);
-    color: #fff;
+    color: #111;
 }
 .glass-image-display {
     flex: 1.5;
