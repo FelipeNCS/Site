@@ -4340,11 +4340,13 @@ body.light-theme .form-group textarea {
 .hero-modern {
     margin: 15px; /* Creates the background gap */
     border-radius: 30px; /* Rounded corners */
-    padding-top: 100px;
-    padding-bottom: 30px;
+    padding-top: 130px;
+    padding-bottom: 40px;
     background: #0a0a0c;
+    min-height: calc(100vh - 30px); /* Restaura o tamanho da tela toda */
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Centraliza o texto verticalmente */
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -4357,7 +4359,7 @@ body.light-theme .form-group textarea {
     display: flex;
     width: 100%;
     max-width: 1440px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 0 40px; /* Increased padding slightly for very large screens */
 }
 
