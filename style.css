@@ -4232,6 +4232,9 @@ body.light-theme .form-group textarea {
 .navbar-modern.scrolled {
     position: fixed;
     top: 20px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 50px;
     background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
