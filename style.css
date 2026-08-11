@@ -4216,20 +4216,27 @@ body.light-theme .form-group textarea {
 
 /* Navbar Modern (Dark Theme) */
 .navbar-modern {
-    position: fixed;
-    top: 20px;
+    position: absolute; /* Joined with the banner initially */
+    top: 35px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 1000px;
     z-index: 1000;
-    background: rgba(10, 10, 15, 0.7);
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-modern.scrolled {
+    position: fixed;
+    top: 20px;
+    background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
 }
 
 .navbar-modern-container {
@@ -4330,14 +4337,17 @@ body.light-theme .form-group textarea {
 
 /* Hero Modern (Dark Theme) */
 .hero-modern {
+    margin: 15px; /* Creates the background gap */
+    border-radius: 30px; /* Rounded corners */
     padding-top: 130px;
     background: #0a0a0c;
-    min-height: 100vh;
+    min-height: calc(100vh - 30px); /* Adjust for margins */
     display: flex;
     flex-direction: column;
     color: #fff;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 .hero-modern-container {
