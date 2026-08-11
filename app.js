@@ -1385,5 +1385,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroSlideshow();
     initTermsModal();
     initLogoParticles();
+    initGlassCards();
 });
 
+/* ==========================================
+   GLASS CARDS INTERACTIVITY
+========================================== */
+function initGlassCards() {
+    const cards = document.querySelectorAll('.glass-card');
+    const mainImg = document.getElementById('glass-main-img');
+
+    if (!cards.length || !mainImg) return;
+
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Remove active from all
+            cards.forEach(c => c.classList.remove('active'));
+            // Add active to current
+            card.classList.add('active');
+
+            // Change image with fade effect
+            const newImgSrc = card.getAttribute('data-img');
+            if (mainImg.getAttribute('src') !== newImgSrc) {
+                mainImg.classList.add('fade-out');
+                setTimeout(() => {
+                    mainImg.src = newImgSrc;
+                    mainImg.classList.remove('fade-out');
+                }, 150); // half of CSS transition time
+            }
+        });
+    });
+}
