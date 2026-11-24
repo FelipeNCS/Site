@@ -705,14 +705,19 @@ if (orcamentoForm) {
     orcamentoForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const name = document.getElementById('orc-name').value;
-        const email = document.getElementById('orc-email').value;
-        const phone = document.getElementById('orc-phone').value;
-        const category = document.getElementById('orc-category').value;
-        const desc = document.getElementById('orc-desc').value;
+        const name = document.getElementById('orc-name') ? document.getElementById('orc-name').value.trim() : '';
+        const categorySelect = document.getElementById('orc-category');
+        const categoryText = (categorySelect && categorySelect.selectedIndex >= 0)
+            ? categorySelect.options[categorySelect.selectedIndex].text
+            : (categorySelect ? categorySelect.value : '');
+        const desc = document.getElementById('orc-desc') ? document.getElementById('orc-desc').value.trim() : '';
         
-        // Show simulated success message
-        alert(`Obrigado, ${name}! Recebemos seu pedido de orçamento para a categoria [${category.toUpperCase()}]. Entraremos em contato pelo e-mail: ${email} ou WhatsApp: ${phone} em breve.`);
+        // Redirecionamento para o WhatsApp (47996186044 -> 5547996186044)
+        const whatsappNumber = "5547996186044";
+        const message = `Olá, me chamo ${name} vim pelo site da LEAD, e gostaria de orçar um projeto.\nCategoria do Projeto: ${categoryText}\n\n${desc}`;
+        
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank') || (window.location.href = whatsappUrl);
         
         // Reset form
         orcamentoForm.reset();
