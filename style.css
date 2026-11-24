@@ -10,7 +10,7 @@
     --primary: #6f42fb;
     --primary-hover: #5d2feb;
     --secondary-glow: rgba(255, 255, 255, 0.1);
-    
+
     /* Dark Theme Variables (Pure Black) */
     --body-bg: #000000;
     --card-bg: #090a10;
@@ -29,7 +29,7 @@
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.8);
     --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.9);
     --shadow-primary: 0 0 25px rgba(111, 66, 251, 0.3);
-    
+
     /* Stats Row Colors */
     --stats-bg: #090a10;
     --stats-border: rgba(255, 255, 255, 0.08);
@@ -64,7 +64,8 @@ body {
     scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
     background-color: #000000 !important;
     color: #ffffff !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -74,9 +75,13 @@ html, body {
 }
 
 /* Hide Scrollbar completely across all browsers while keeping scroll functionality */
-html, body, * {
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE/Edge */
+html,
+body,
+* {
+    scrollbar-width: none !important;
+    /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE/Edge */
 }
 
 ::-webkit-scrollbar,
@@ -158,14 +163,16 @@ html, body, * {
 .logo-img {
     position: relative;
     z-index: 1;
-    height: 18px !important; /* Slightly reduced */
+    height: 18px !important;
+    /* Slightly reduced */
     max-height: 18px !important;
     width: auto !important;
     transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-btn-icon {
-    height: 15px !important; /* Slightly reduced */
+    height: 15px !important;
+    /* Slightly reduced */
     width: auto !important;
     object-fit: contain;
     vertical-align: middle;
@@ -187,7 +194,8 @@ html, body, * {
 
 .nav-link {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.85); /* Readable bright text in dark navbar */
+    color: rgba(255, 255, 255, 0.85);
+    /* Readable bright text in dark navbar */
     font-size: 1.02rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
@@ -398,7 +406,7 @@ html, body, * {
 
 .lang-btn img {
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .theme-toggle-btn {
@@ -528,6 +536,7 @@ html, body, * {
     border-color: #25d366 !important;
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4) !important;
 }
+
 .shortcut-whatsapp:hover svg {
     color: #ffffff !important;
 }
@@ -537,6 +546,7 @@ html, body, * {
     border-color: #5865f2 !important;
     box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4) !important;
 }
+
 .shortcut-discord:hover svg {
     color: #ffffff !important;
 }
@@ -546,6 +556,7 @@ html, body, * {
     border-color: #0088cc !important;
     box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4) !important;
 }
+
 .shortcut-telegram:hover svg {
     color: #ffffff !important;
 }
@@ -626,7 +637,8 @@ html, body, * {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* behind hero content */
+    z-index: 1;
+    /* behind hero content */
     pointer-events: none;
 }
 
@@ -663,9 +675,12 @@ html, body, * {
 }
 
 @keyframes floatIllustration {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) scale(1);
     }
+
     50% {
         transform: translateY(-8px) scale(1.01);
     }
@@ -888,7 +903,8 @@ html, body, * {
     transition: all 0.2s ease;
 }
 
-.filter-tab:hover, .filter-tab.active {
+.filter-tab:hover,
+.filter-tab.active {
     background-color: var(--primary);
     color: #ffffff;
     border-color: var(--primary);
@@ -1161,7 +1177,7 @@ html, body, * {
     height: 100vh;
     background-color: var(--card-bg);
     border-left: 1px solid var(--card-border);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     z-index: 2000;
     display: flex;
     flex-direction: column;
@@ -1375,7 +1391,7 @@ html, body, * {
 
 .form-group input {
     width: 100%;
-    background-color: rgba(255,255,255,0.03);
+    background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--card-border);
     border-radius: 10px;
     padding: 12px 16px;
@@ -1434,7 +1450,7 @@ body.light-theme .form-group input {
     font-size: 0.88rem;
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .shortcut-btn svg {
@@ -1505,6 +1521,7 @@ body.light-theme .form-group input {
 .category-card-home:nth-child(1):hover {
     border-color: rgba(167, 139, 250, 0.4);
 }
+
 .category-card-home:nth-child(1)::before {
     background: linear-gradient(90deg, #a78bfa, #6f42fb);
 }
@@ -1512,6 +1529,7 @@ body.light-theme .form-group input {
 .category-card-home:nth-child(2):hover {
     border-color: rgba(59, 130, 246, 0.4);
 }
+
 .category-card-home:nth-child(2)::before {
     background: linear-gradient(90deg, #60a5fa, #3b82f6);
 }
@@ -1519,6 +1537,7 @@ body.light-theme .form-group input {
 .category-card-home:nth-child(3):hover {
     border-color: rgba(16, 185, 129, 0.4);
 }
+
 .category-card-home:nth-child(3)::before {
     background: linear-gradient(90deg, #34d399, #10b981);
 }
@@ -1526,6 +1545,7 @@ body.light-theme .form-group input {
 .category-card-home:nth-child(4):hover {
     border-color: rgba(37, 211, 102, 0.4);
 }
+
 .category-card-home:nth-child(4)::before {
     background: linear-gradient(90deg, #25d366, #0088cc);
 }
@@ -1696,16 +1716,16 @@ body.light-theme .form-group textarea {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
-    
+
     .stats-container {
         flex-wrap: wrap;
         gap: 20px;
     }
-    
+
     .stat-item {
         flex: 1 1 40%;
     }
-    
+
     .stat-divider {
         display: none;
     }
@@ -1734,7 +1754,7 @@ body.light-theme .form-group textarea {
         padding: 80px 30px;
         gap: 24px;
         transition: right 0.3s ease;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     }
 
     .nav-menu.active {
@@ -1799,7 +1819,7 @@ body.light-theme .form-group textarea {
     .hero-slideshow::after {
         display: none;
     }
-    
+
     .slideshow-img {
         background-position: center center;
     }
@@ -1807,7 +1827,7 @@ body.light-theme .form-group textarea {
     .hero-title {
         font-size: 2.2rem;
     }
-    
+
     .cart-sidebar {
         width: 100%;
         right: -100%;
@@ -1837,7 +1857,7 @@ body.light-theme .form-group textarea {
         width: 100%;
         gap: 10px;
     }
-    
+
     .btn-side {
         max-width: 100%;
     }
@@ -1846,7 +1866,8 @@ body.light-theme .form-group textarea {
         grid-template-columns: 1fr;
     }
 
-    .features-grid, .categories-container-home {
+    .features-grid,
+    .categories-container-home {
         grid-template-columns: 1fr;
     }
 
@@ -1982,11 +2003,11 @@ body.light-theme .form-group textarea {
         padding: 32px 24px;
         gap: 24px;
     }
-    
+
     .discord-banner-title {
         font-size: 1.75rem;
     }
-    
+
     .discord-banner-desc {
         font-size: 0.98rem;
     }
@@ -2171,11 +2192,11 @@ body.light-theme .form-group textarea {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .footer-card {
         padding: 28px 24px;
     }
-    
+
     .footer-bottom-bar {
         flex-direction: column;
         text-align: center;
@@ -2227,7 +2248,7 @@ body.light-theme .form-group textarea {
         padding: 40px 24px !important;
         min-height: 420px;
     }
-    
+
     .minecraft-hero-bg-overlay {
         background: linear-gradient(180deg, rgba(7, 8, 14, 0.92) 0%, rgba(7, 8, 14, 0.75) 100%);
     }
@@ -2367,7 +2388,7 @@ body.light-theme .form-group textarea {
         padding: 28px 20px 24px 20px;
         border-radius: 20px;
     }
-    
+
     .terms-scroll-area {
         max-height: 260px;
         font-size: 0.88rem;
@@ -2611,12 +2632,41 @@ body.light-theme .form-group textarea {
     font-weight: 700;
 }
 
-.tag-java { border: 1px solid #ef4444; background: rgba(239, 68, 68, 0.12); color: #ef4444; }
-.tag-spigot { border: 1px solid #f59e0b; background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
-.tag-paper { border: 1px solid #3b82f6; background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
-.tag-folia { border: 1px solid #10b981; background: rgba(16, 185, 129, 0.12); color: #10b981; }
-.tag-purpur { border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.12); color: #a855f7; }
-.tag-all-versions { border: 1px solid #10b981; background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.tag-java {
+    border: 1px solid #ef4444;
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.tag-spigot {
+    border: 1px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+}
+
+.tag-paper {
+    border: 1px solid #3b82f6;
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+}
+
+.tag-folia {
+    border: 1px solid #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+}
+
+.tag-purpur {
+    border: 1px solid #a855f7;
+    background: rgba(168, 85, 247, 0.12);
+    color: #a855f7;
+}
+
+.tag-all-versions {
+    border: 1px solid #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+}
 
 .pd-sidebar-cta {
     margin-top: auto;
@@ -2859,8 +2909,13 @@ body.light-theme .form-group textarea {
     justify-content: center;
 }
 
-.icon-blue { background: rgba(59, 130, 246, 0.12); }
-.icon-purple { background: rgba(168, 85, 247, 0.12); }
+.icon-blue {
+    background: rgba(59, 130, 246, 0.12);
+}
+
+.icon-purple {
+    background: rgba(168, 85, 247, 0.12);
+}
 
 .pd-feat-card-title {
     font-size: 0.95rem;
@@ -3583,8 +3638,13 @@ body.light-theme .form-group textarea {
 }
 
 @keyframes marqueeReviews {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Individual Review Card (Matching Screenshot) */
@@ -3898,8 +3958,15 @@ body.light-theme .form-group textarea {
 }
 
 @keyframes blinkStatus {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
 }
 
 /* ==========================================
@@ -4005,11 +4072,11 @@ body.light-theme .form-group textarea {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: 
-        radial-gradient(2px 2px at 20px 30px, rgba(168, 85, 247, 0.4), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 80px 120px, rgba(192, 132, 252, 0.5), rgba(0,0,0,0)),
-        radial-gradient(3px 3px at 220px 50px, rgba(111, 66, 251, 0.6), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 160px 180px, rgba(233, 213, 255, 0.4), rgba(0,0,0,0));
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(168, 85, 247, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 80px 120px, rgba(192, 132, 252, 0.5), rgba(0, 0, 0, 0)),
+        radial-gradient(3px 3px at 220px 50px, rgba(111, 66, 251, 0.6), rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 160px 180px, rgba(233, 213, 255, 0.4), rgba(0, 0, 0, 0));
     background-repeat: repeat;
     background-size: 250px 250px;
     animation: particleFloat 12s linear infinite;
@@ -4017,8 +4084,13 @@ body.light-theme .form-group textarea {
 }
 
 @keyframes particleFloat {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px -250px; }
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px -250px;
+    }
 }
 
 /* Voxel Stage & Character */
@@ -4030,21 +4102,24 @@ body.light-theme .form-group textarea {
     margin-bottom: 2px;
     z-index: 2;
     width: 100%;
-    height: 240px; /* Gives room for character and panel */
+    height: 240px;
+    /* Gives room for character and panel */
 }
 
 .voxel-character-svg {
     display: block;
-    width: 250px; /* ~70% visually */
+    width: 250px;
+    /* ~70% visually */
     height: 250px;
-    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
 }
 
 /* Phone Hologram Emitter Beam */
 .phone-holo-beam {
     position: absolute;
-    top: 50%; /* Adjusted to center of model-viewer */
-    left: 40%; 
+    top: 50%;
+    /* Adjusted to center of model-viewer */
+    left: 40%;
     transform: translate(-50%, -100%) scaleY(0);
     transform-origin: bottom center;
     width: 140px;
@@ -4060,15 +4135,15 @@ body.light-theme .form-group textarea {
 .holo-store-panel {
     position: absolute;
     top: -20px;
-    left: 45%; 
-    width: 220px; 
+    left: 45%;
+    width: 220px;
     background: rgba(17, 18, 28, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(168, 85, 247, 0.5);
     border-radius: 12px;
     padding: 10px;
-    box-shadow: 
+    box-shadow:
         0 12px 35px rgba(111, 66, 251, 0.4),
         inset 0 0 20px rgba(168, 85, 247, 0.15);
     z-index: 4;
@@ -4236,12 +4311,15 @@ body.light-theme .form-group textarea {
 
 /* Navbar Modern (Dark Theme) */
 .navbar-modern {
-    position: absolute; /* Joined with the banner initially */
+    position: absolute;
+    /* Joined with the banner initially */
     top: 35px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 30px); /* Exactly matches hero banner width */
-    max-width: 1440px; /* Matched with hero container width */
+    width: calc(100% - 30px);
+    /* Exactly matches hero banner width */
+    max-width: 1440px;
+    /* Matched with hero container width */
     z-index: 1000;
     background: transparent;
     border: 1px solid transparent;
@@ -4263,14 +4341,16 @@ body.light-theme .form-group textarea {
 }
 
 .navbar-modern.scrolled .navbar-modern-container {
-    padding: 5px 30px; /* Faz a barra ficar mais fina e elegante ao rolar */
+    padding: 5px 30px;
+    /* Faz a barra ficar mais fina e elegante ao rolar */
     transition: padding 0.3s ease;
 }
 
 .navbar-modern-container {
     display: flex;
     align-items: center;
-    padding: 10px 40px; /* Matched with hero container padding */
+    padding: 10px 40px;
+    /* Matched with hero container padding */
 }
 
 .logo-modern {
@@ -4279,7 +4359,8 @@ body.light-theme .form-group textarea {
     gap: 10px;
     text-decoration: none;
     color: #fff;
-    margin-right: 40px; /* Space between logo and menu */
+    margin-right: 40px;
+    /* Space between logo and menu */
 }
 
 .logo-modern .logo-img {
@@ -4312,14 +4393,15 @@ body.light-theme .form-group textarea {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-left: auto; /* Pushes the actions to the far right */
+    margin-left: auto;
+    /* Pushes the actions to the far right */
 }
 
 .lang-btn-modern {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4339,25 +4421,26 @@ body.light-theme .form-group textarea {
     display: flex;
     align-items: center;
     gap: 8px;
-    white-space: nowrap; /* Evita que o texto dos botões quebre linha */
+    white-space: nowrap;
+    /* Evita que o texto dos botões quebre linha */
     transition: all 0.3s ease;
 }
 
 .btn-outline {
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
     background: transparent;
 }
 
 .btn-outline:hover {
-    border-color: rgba(255,255,255,0.6);
-    background: rgba(255,255,255,0.05);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .btn-filled {
     background: #fff;
     color: #111;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .btn-filled:hover {
@@ -4395,7 +4478,7 @@ body.light-theme .form-group textarea {
     width: 100%;
     min-height: 100vh;
     background-color: #000000;
-    background-image: url('images/hero-cosmic-clean.jpg?v=3000');
+    background-image: url('images/hero-cosmic-clean.jpg?v=3200');
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -4446,51 +4529,67 @@ body.light-theme .form-group textarea {
     text-align: center;
 }
 
-/* Headline matching high-contrast editorial serif */
+/* Headline with Geist font matching reference */
 .hero-cosmic-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 3.5vw, 3.4rem);
-    font-weight: 400;
-    line-height: 1.2;
-    color: #ffffff;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+    font-weight: 450;
+    line-height: 1.15;
+    color: #ffffff !important;
     text-align: center;
-    margin: 0 0 16px 0;
-    letter-spacing: -0.015em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+    margin: 0 0 20px 0;
+    letter-spacing: -0.04em;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
 }
 
-/* Italic glowing purple highlight ("e Sites", "mundo integrado") */
+.hero-cosmic-title * {
+    font-family: inherit !important;
+    font-style: normal !important;
+    font-weight: inherit !important;
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
 .hero-italic-purple {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    color: #c084fc;
-    background: linear-gradient(135deg, #e9d5ff 0%, #c084fc 45%, #f472b6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.5));
-    display: inline-block;
+    font-family: inherit !important;
+    font-style: normal !important;
+    font-weight: inherit !important;
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: unset !important;
+    filter: none !important;
+    display: inline !important;
 }
 
-/* Subtitle */
+/* Subtitle / Description with Geist font */
 .hero-cosmic-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
     font-weight: 400;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.82) !important;
     text-align: center;
     max-width: 740px;
-    margin: 0 auto 26px;
-    letter-spacing: 0.1px;
+    margin: 0 auto 30px;
+    letter-spacing: -0.015em;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
+.hero-cosmic-subtitle * {
+    font-family: inherit !important;
+    color: #ffffff !important;
+    font-weight: 400 !important;
+    text-shadow: none !important;
+}
+
 .hero-text-highlight {
-    color: #c084fc;
-    font-weight: 600;
-    text-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+    color: #ffffff !important;
+    font-weight: 400 !important;
+    text-shadow: none !important;
 }
 
 /* Action Buttons */
@@ -4570,7 +4669,6 @@ body.light-theme .form-group textarea {
 /* Responsive adjustments */
 @media (max-width: 991px) {
     .hero-modern.hero-cosmic-section {
-        background-image: radial-gradient(circle at center top, rgba(88, 28, 135, 0.3) 0%, #000000 70%);
         min-height: auto;
         padding-top: 120px;
         padding-bottom: 70px;
@@ -4578,7 +4676,7 @@ body.light-theme .form-group textarea {
 
     .hero-cosmic-title {
         font-size: 2.3rem;
-        line-height: 1.25;
+        line-height: 1.2;
     }
 }
 
@@ -4603,7 +4701,8 @@ body.light-theme .form-group textarea {
         gap: 12px;
     }
 
-    .btn-hero-white, .btn-hero-dark {
+    .btn-hero-white,
+    .btn-hero-dark {
         width: 100%;
         justify-content: center;
         padding: 12px 20px;
@@ -4672,10 +4771,14 @@ body.light-theme .form-group textarea {
 .badge-modern {
     display: inline-flex;
     align-items: center;
-    background: #1a1b23; /* Dark card background */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Cinza claro para maior destaque */
-    border-radius: 40px; /* Fully rounded pill */
-    padding: 6px 16px 6px 6px; /* Extra padding on right, tight on left for the icon */
+    background: #1a1b23;
+    /* Dark card background */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Cinza claro para maior destaque */
+    border-radius: 40px;
+    /* Fully rounded pill */
+    padding: 6px 16px 6px 6px;
+    /* Extra padding on right, tight on left for the icon */
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.85rem;
     font-weight: 500;
@@ -4698,7 +4801,8 @@ body.light-theme .form-group textarea {
 }
 
 .badge-logo {
-    height: 20px; /* Aumentado para melhor leitura */
+    height: 20px;
+    /* Aumentado para melhor leitura */
 }
 
 .badge-arrow {
@@ -4791,7 +4895,8 @@ body.light-theme .form-group textarea {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-.glass-card:hover, .glass-card.active {
+.glass-card:hover,
+.glass-card.active {
     background: rgba(28, 29, 42, 0.9);
     transform: translateX(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(168, 85, 247, 0.2);
@@ -4811,7 +4916,8 @@ body.light-theme .form-group textarea {
     transition: all 0.3s ease;
 }
 
-.glass-card:hover .glass-card-icon, .glass-card.active .glass-card-icon {
+.glass-card:hover .glass-card-icon,
+.glass-card.active .glass-card-icon {
     background: #7c3aed;
     color: #fff;
     box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
@@ -4832,16 +4938,18 @@ body.light-theme .form-group textarea {
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.glass-card:hover .glass-card-arrow, .glass-card.active .glass-card-arrow {
+.glass-card:hover .glass-card-arrow,
+.glass-card.active .glass-card-arrow {
     transform: translateX(5px);
     color: #ffffff;
 }
+
 .glass-image-display {
     flex: 1.5;
     border-radius: 24px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .glass-image-display img {
@@ -4862,32 +4970,38 @@ body.light-theme .form-group textarea {
         right: -50%;
         opacity: 0.5;
     }
+
     .hero-modern-title {
         font-size: 2.8rem;
     }
+
     .glass-container {
         flex-direction: column;
         height: auto;
     }
+
     .glass-image-display {
         height: 400px;
         order: -1;
     }
+
     .logos-strip {
         flex-direction: column;
         gap: 30px;
         text-align: center;
     }
+
     .logos-slider {
         justify-content: center;
         flex-wrap: wrap;
         gap: 20px;
     }
 
-    .nav-menu-modern, .navbar-actions-modern {
+    .nav-menu-modern,
+    .navbar-actions-modern {
         display: none;
     }
-    
+
     .logos-slider {
         flex-wrap: wrap;
         gap: 20px;
@@ -4902,7 +5016,8 @@ body.light-theme .form-group textarea {
 /* ------------------------------------------
    VIEWPORT META & BASE
 ------------------------------------------ */
-html, body {
+html,
+body {
     -webkit-text-size-adjust: 100%;
     touch-action: manipulation;
     overflow-x: hidden;
@@ -4914,8 +5029,10 @@ html, body {
    TABLETS E TELAS MÉDIAS (max-width: 900px)
 ------------------------------------------ */
 @media (max-width: 900px) {
+
     /* Navbar */
-    .navbar-container, .navbar-modern-container {
+    .navbar-container,
+    .navbar-modern-container {
         padding: 12px 16px;
     }
 
@@ -4924,20 +5041,23 @@ html, body {
     }
 
     /* Hero */
-    .hero-container, .hero-modern:not(.hero-cosmic-section) {
+    .hero-container,
+    .hero-modern:not(.hero-cosmic-section) {
         flex-direction: column;
         padding: 28px 20px;
         min-height: auto;
         text-align: center;
-        margin: 10px; /* Reduz margem para não estourar */
+        margin: 10px;
+        /* Reduz margem para não estourar */
         width: auto;
     }
-    
+
     .hero-modern:not(.hero-cosmic-section) {
         padding-top: 100px;
     }
 
-    .hero-content, .hero-modern-content-left {
+    .hero-content,
+    .hero-modern-content-left {
         max-width: 100%;
     }
 
@@ -4946,12 +5066,14 @@ html, body {
         text-align: center;
     }
 
-    .hero-title, .hero-modern-title {
+    .hero-title,
+    .hero-modern-title {
         font-size: 2.2rem;
         line-height: 1.2;
     }
 
-    .hero-subtitle, .hero-modern-subtitle {
+    .hero-subtitle,
+    .hero-modern-subtitle {
         font-size: 1rem;
     }
 
@@ -5021,7 +5143,7 @@ html, body {
     .section-title {
         font-size: 1.9rem;
     }
-    
+
     /* Previne overflow nos botões no badge */
     .badge-modern {
         white-space: normal;
@@ -5033,8 +5155,10 @@ html, body {
    SMARTPHONES GRANDES (max-width: 768px)
 ------------------------------------------ */
 @media (max-width: 768px) {
+
     /* Navbar mobile */
-    .navbar-container, .navbar-modern-container {
+    .navbar-container,
+    .navbar-modern-container {
         padding: 10px 14px;
         justify-content: space-between;
     }
@@ -5087,7 +5211,7 @@ html, body {
         padding: 10px 12px;
         font-size: 0.9rem;
     }
-    
+
     .mobile-only-actions {
         display: flex;
     }
@@ -5116,12 +5240,14 @@ html, body {
         gap: 20px;
     }
 
-    .hero-title, .hero-modern-title {
+    .hero-title,
+    .hero-modern-title {
         font-size: 1.85rem;
         letter-spacing: -0.5px;
     }
 
-    .hero-subtitle, .hero-modern-subtitle {
+    .hero-subtitle,
+    .hero-modern-subtitle {
         font-size: 0.95rem;
     }
 
@@ -5358,6 +5484,7 @@ html, body {
    SMARTPHONES PEQUENOS (max-width: 480px)
 ------------------------------------------ */
 @media (max-width: 480px) {
+
     /* Main layout */
     .main-layout {
         padding: 72px 10px 24px;
@@ -5435,7 +5562,8 @@ html, body {
 
     /* Navbar */
     .client-area-btn span {
-        display: none; /* Só ícone em tela muito pequena */
+        display: none;
+        /* Só ícone em tela muito pequena */
     }
 
     .client-area-btn {
@@ -5518,7 +5646,7 @@ html, body {
     .glass-image-display {
         height: 220px;
     }
-    
+
     .badge-modern {
         font-size: 0.75rem;
         padding: 6px 12px;
@@ -5533,14 +5661,16 @@ html, body {
         padding: 68px 8px 20px;
     }
 
-    .hero-title, .hero-modern-title {
+    .hero-title,
+    .hero-modern-title {
         font-size: 1.45rem;
     }
 
-    .hero-container, .hero-modern:not(.hero-cosmic-section) {
+    .hero-container,
+    .hero-modern:not(.hero-cosmic-section) {
         padding: 16px 12px;
     }
-    
+
     .hero-modern:not(.hero-cosmic-section) {
         padding-top: 70px;
     }
@@ -5558,7 +5688,8 @@ html, body {
         padding: 16px 10px;
     }
 
-    .navbar-container, .navbar-modern-container {
+    .navbar-container,
+    .navbar-modern-container {
         padding: 8px 10px;
     }
 }
@@ -5567,6 +5698,7 @@ html, body {
    AJUSTES DE TOQUE E USABILIDADE MOBILE
 ------------------------------------------ */
 @media (hover: none) and (pointer: coarse) {
+
     /* Aumentar área clicável de botões e links */
     .btn,
     .btn-side,
@@ -5598,11 +5730,14 @@ html, body {
    SAFE AREA (IPHONE COM NOTCH)
 ------------------------------------------ */
 @supports (padding-top: env(safe-area-inset-top)) {
-    .navbar, .navbar-modern {
+
+    .navbar,
+    .navbar-modern {
         padding-top: env(safe-area-inset-top);
     }
 
-    .navbar-container, .navbar-modern-container {
+    .navbar-container,
+    .navbar-modern-container {
         padding-top: max(14px, env(safe-area-inset-top));
     }
 
@@ -5613,6 +5748,8 @@ html, body {
     .cart-sidebar {
         padding-bottom: max(20px, env(safe-area-inset-bottom));
     }
-}nset-bottom));
-    }
+}
+
+nset-bottom));
+}
 }
