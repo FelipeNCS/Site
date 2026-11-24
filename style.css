@@ -2031,7 +2031,9 @@ body.light-theme .form-group textarea {
     margin-top: 60px;
     margin-bottom: 0;
     position: relative;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-left-radius: 48px;
+    border-top-right-radius: 48px;
+    overflow: hidden;
 }
 
 .footer-card-container {
