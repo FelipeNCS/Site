@@ -4355,6 +4355,21 @@ body.light-theme .form-group textarea {
     transform: translateY(-2px);
 }
 
+.btn-glow-purple {
+    background: linear-gradient(90deg, #7c3aed 0%, #9333ea 50%, #c084fc 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.55), 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    font-weight: 500;
+    transition: all 0.3s ease !important;
+}
+
+.btn-glow-purple:hover {
+    background: linear-gradient(90deg, #6d28d9 0%, #7e22ce 50%, #a855f7 100%) !important;
+    box-shadow: 0 0 28px rgba(168, 85, 247, 0.8), 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
 .mobile-only-actions {
     display: none;
     flex-direction: column;
@@ -4363,61 +4378,272 @@ body.light-theme .form-group textarea {
     margin-top: 20px;
 }
 
-/* Hero Modern (Dark Theme) */
-.hero-modern {
-    margin: 15px; /* Creates the background gap */
-    border-radius: 30px; /* Rounded corners */
-    padding-top: 130px;
-    padding-bottom: 40px;
-    background: #0a0a0c;
-    min-height: calc(100vh - 30px); /* Restaura o tamanho da tela toda */
+/* Hero Modern - Cosmic Scene (Identical to Design) */
+.hero-modern.hero-cosmic-section {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+    background-image: url('images/hero-clean-scene@2x.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza o texto verticalmente */
-    color: #fff;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 100px;
+    padding-bottom: 50px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    box-shadow: none;
 }
 
-.hero-modern-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 40px; /* Increased padding slightly for very large screens */
-}
-
-.hero-modern-content-left {
-    flex: 1;
-    max-width: 700px;
-}
-
-.hero-modern-bg-glow {
+/* Atmospheric bottom vignette */
+.hero-cosmic-section::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    right: -20%;
-    transform: translateY(-50%);
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(66, 135, 245, 0.15) 0%, rgba(66, 135, 245, 0) 70%);
-    border-radius: 50%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
     pointer-events: none;
     z-index: 1;
 }
 
-.hero-modern-bg-glow::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    box-shadow: inset -20px 0 60px rgba(111, 66, 251, 0.4);
+/* Mobile 3D visual wrapper */
+.hero-mobile-visual-wrap {
+    display: none;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto 15px;
+    padding: 0 16px;
+    position: relative;
+    z-index: 2;
+    animation: heroFloating 5s ease-in-out infinite;
+}
+
+.hero-tablet-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 25px rgba(168, 85, 247, 0.35));
+}
+
+@keyframes heroFloating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Desktop spacer leaving space for the 3D visual in the background */
+.hero-visual-spacer {
+    display: block;
+    width: 100%;
+    height: 42vh;
+    min-height: 270px;
+    max-height: 420px;
+    pointer-events: none;
+}
+
+.hero-cosmic-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-cosmic-content {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Headline matching high-contrast editorial serif */
+.hero-cosmic-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.015em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+/* Italic glowing purple highlight ("e Sites", "mundo integrado") */
+.hero-italic-purple {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #c084fc;
+    background: linear-gradient(135deg, #e9d5ff 0%, #c084fc 45%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.5));
+    display: inline-block;
+}
+
+/* Subtitle */
+.hero-cosmic-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+    max-width: 740px;
+    margin: 0 auto 26px;
+    letter-spacing: 0.1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.hero-text-highlight {
+    color: #c084fc;
+    font-weight: 600;
+    text-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
+}
+
+/* Action Buttons */
+.hero-cosmic-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+/* Button 1: Solid White Pill */
+.btn-hero-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 32px;
+    background: #ffffff;
+    color: #050508 !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hero-white:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: #f3f4f6;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35);
+}
+
+.btn-hero-white svg {
+    transition: transform 0.2s ease;
+}
+
+.btn-hero-white:hover svg {
+    transform: translateX(3px);
+}
+
+/* Button 2: Dark Glass Pill with Play Icon */
+.btn-hero-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-hero-dark:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-play-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .hero-modern.hero-cosmic-section {
+        background-image: radial-gradient(circle at center top, rgba(88, 28, 135, 0.3) 0%, #000000 70%);
+        min-height: auto;
+        padding-top: 110px;
+        padding-bottom: 60px;
+    }
+    
+    .hero-mobile-visual-wrap {
+        display: block;
+    }
+    
+    .hero-visual-spacer {
+        display: none;
+    }
+
+    .hero-cosmic-title {
+        font-size: 2.2rem;
+        line-height: 1.25;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-modern.hero-cosmic-section {
+        padding-top: 95px;
+        padding-bottom: 50px;
+    }
+
+    .hero-cosmic-title {
+        font-size: 1.7rem;
+    }
+
+    .hero-cosmic-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-cosmic-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .btn-hero-white, .btn-hero-dark {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
 }
 
 .logos-strip {
@@ -4723,7 +4949,7 @@ html, body {
     }
 
     /* Hero */
-    .hero-container, .hero-modern {
+    .hero-container, .hero-modern:not(.hero-cosmic-section) {
         flex-direction: column;
         padding: 28px 20px;
         min-height: auto;
@@ -4732,7 +4958,7 @@ html, body {
         width: auto;
     }
     
-    .hero-modern {
+    .hero-modern:not(.hero-cosmic-section) {
         padding-top: 100px;
     }
 
@@ -5169,7 +5395,7 @@ html, body {
         gap: 16px;
     }
 
-    .hero-modern {
+    .hero-modern:not(.hero-cosmic-section) {
         padding-top: 80px;
     }
 
@@ -5336,11 +5562,11 @@ html, body {
         font-size: 1.45rem;
     }
 
-    .hero-container, .hero-modern {
+    .hero-container, .hero-modern:not(.hero-cosmic-section) {
         padding: 16px 12px;
     }
     
-    .hero-modern {
+    .hero-modern:not(.hero-cosmic-section) {
         padding-top: 70px;
     }
 
