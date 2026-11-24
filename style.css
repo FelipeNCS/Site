@@ -4454,6 +4454,22 @@ body.light-theme .form-group textarea {
     transform: translateY(-2px);
 }
 
+.btn-modern.btn-white {
+    background: #ffffff !important;
+    color: #050508 !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-modern.btn-white:hover {
+    background: #f3f4f6 !important;
+    color: #000000 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35);
+}
+
 .btn-glow-purple {
     background: linear-gradient(90deg, #7c3aed 0%, #9333ea 50%, #c084fc 100%) !important;
     color: #ffffff !important;
