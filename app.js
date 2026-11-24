@@ -1439,8 +1439,8 @@ function initStackedCards() {
     let ticking = false;
     const updateStack = () => {
         ticking = false;
-        const scaleFactor = 0.035; // gentle shrink per card layered on top
-        const shadeFactor = 0.25;  // gentle darken
+        const scaleFactor = 0.04; // 4% subtle cinematic scale per card
+        const shadeFactor = 0.35; // 35% depth darkening per card
 
         const rects = cards.map(c => c.getBoundingClientRect());
         const overlaps = cards.map((card, i) => {
@@ -1461,7 +1461,7 @@ function initStackedCards() {
             card.style.transform = covered > 0 ? `scale(${1 - covered * scaleFactor})` : '';
             const shade = card.querySelector('.pcard-shade');
             if (shade) {
-                shade.style.opacity = String(Math.min(0.5, covered * shadeFactor));
+                shade.style.opacity = String(Math.min(0.7, covered * shadeFactor));
             }
         });
     };
@@ -1473,17 +1473,9 @@ function initStackedCards() {
         }
     };
 
-    const observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-        } else {
-            window.removeEventListener('scroll', onScroll);
-        }
-    });
-
-    observer.observe(stack);
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
+    updateStack();
 }
 
 
