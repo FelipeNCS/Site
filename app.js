@@ -1275,9 +1275,9 @@ function renderReviewsMarquee() {
     });
 }
 
-// Pixelated Purple Particle Generator for LEAD Logo
+// Pixelated Purple & White Particle Generator for LEAD Logo
 function initLogoParticles() {
-    const wrappers = document.querySelectorAll('.logo-wrapper');
+    const wrappers = document.querySelectorAll('.logo-wrapper, .logo-modern');
     if (!wrappers.length) return;
 
     wrappers.forEach(wrapper => {
@@ -1298,8 +1298,8 @@ function initLogoParticles() {
         function resize() {
             const rect = wrapper.getBoundingClientRect();
             const margin = 20;
-            canvas.width = Math.round((rect.width || 120) + margin * 2);
-            canvas.height = Math.round((rect.height || 30) + margin * 2);
+            canvas.width = Math.round((rect.width || 110) + margin * 2);
+            canvas.height = Math.round((rect.height || 26) + margin * 2);
             width = canvas.width;
             height = canvas.height;
             canvas.style.top = `-${margin}px`;
@@ -1308,37 +1308,56 @@ function initLogoParticles() {
             canvas.style.height = `${height}px`;
         }
 
+        const img = wrapper.querySelector('img');
+        if (img) {
+            if (img.complete) {
+                resize();
+            } else {
+                img.addEventListener('load', resize);
+            }
+        }
         resize();
         window.addEventListener('resize', resize);
 
-        const colors = ['#a855f7', '#c084fc', '#e9d5ff', '#9333ea', '#6f42fb', '#ffffff', '#d8b4fe'];
+        // Minimalist white & purple pixel colors
+        const colors = [
+            '#ffffff',
+            '#ffffff',
+            '#c084fc',
+            '#a855f7',
+            '#e9d5ff',
+            '#9333ea',
+            '#d8b4fe'
+        ];
 
         function createParticle(burst = false) {
             const margin = 20;
-            const size = Math.random() < 0.35 ? 3 : (Math.random() < 0.65 ? 2 : 4);
+            const size = Math.random() < 0.6 ? 2 : (Math.random() < 0.85 ? 3 : 2.5);
+            // Spawn across the logo width and from middle to bottom edge
             const x = margin + Math.random() * (width - margin * 2);
-            const y = margin + (height - margin * 2) * (0.3 + Math.random() * 0.7);
+            const y = margin + (height - margin * 2) * (0.35 + Math.random() * 0.65);
 
             return {
                 x: x,
                 y: y,
                 size: size,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                vx: (Math.random() - 0.5) * (burst ? 2.2 : 0.8),
-                vy: -(Math.random() * (burst ? 1.8 : 1.0) + 0.4),
+                vx: (Math.random() - 0.5) * (burst ? 1.2 : 0.4),
+                vy: -(Math.random() * (burst ? 1.1 : 0.6) + 0.25),
                 alpha: 1,
-                decay: Math.random() * 0.02 + 0.012
+                decay: Math.random() * 0.012 + 0.008
             };
         }
 
-        wrapper.parentElement.addEventListener('mouseenter', () => {
+        const hoverTarget = wrapper.closest('a') || wrapper;
+        hoverTarget.addEventListener('mouseenter', () => {
             isHovered = true;
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 8; i++) {
                 particles.push(createParticle(true));
             }
         });
 
-        wrapper.parentElement.addEventListener('mouseleave', () => {
+        hoverTarget.addEventListener('mouseleave', () => {
             isHovered = false;
         });
 
@@ -1348,10 +1367,12 @@ function initLogoParticles() {
             frameCount++;
             ctx.clearRect(0, 0, width, height);
 
-            if (frameCount % 4 === 0 || (isHovered && frameCount % 2 === 0)) {
-                if (particles.length < (isHovered ? 45 : 22)) {
-                    particles.push(createParticle(isHovered));
-                }
+            // Subtle minimalist spawn rate
+            const spawnRate = isHovered ? 4 : 8;
+            const maxCount = isHovered ? 24 : 12;
+
+            if (frameCount % spawnRate === 0 && particles.length < maxCount) {
+                particles.push(createParticle(isHovered));
             }
 
             for (let i = particles.length - 1; i >= 0; i--) {
@@ -1367,13 +1388,13 @@ function initLogoParticles() {
 
                 ctx.globalAlpha = Math.max(0, p.alpha);
                 ctx.fillStyle = p.color;
-                ctx.fillRect(Math.floor(p.x), Math.floor(p.y), p.size, p.size);
+                // Draw crisp pixel squares
+                ctx.fillRect(Math.round(p.x), Math.round(p.y), p.size, p.size);
             }
 
             requestAnimationFrame(animate);
         }
 
-        // Delay initial resize slightly to ensure images are loaded
         setTimeout(resize, 100);
         animate();
     });

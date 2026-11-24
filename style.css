@@ -155,9 +155,22 @@ body,
 .logo-particles-canvas {
     position: absolute;
     pointer-events: none;
-    z-index: 0;
+    z-index: 2;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+}
+
+.logo-modern .logo-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-modern .logo-img {
+    height: 24px !important;
+    max-height: 24px !important;
+    width: auto !important;
 }
 
 .logo-img {
