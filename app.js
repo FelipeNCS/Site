@@ -152,12 +152,12 @@ const btnNossosProdutos = document.getElementById('btn-nossos-produtos');
 const orcamentoForm = document.getElementById('orcamento-form');
 
 // ==========================================
-// 1. THEME TOGGLING (Dark/Light)
+// 1. THEME INITIALIZATION (Enforce Deep Dark Theme)
 // ==========================================
 function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'dark-theme';
-    body.className = savedTheme;
-    updateThemeIcons(savedTheme);
+    body.className = 'dark-theme';
+    localStorage.setItem('theme', 'dark-theme');
+    updateThemeIcons('dark-theme');
 }
 
 function updateThemeIcons(theme) {
