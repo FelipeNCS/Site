@@ -6571,3 +6571,78 @@ body {
         top: calc(var(--strip) + 12px);
     }
 }
+
+
+/* ==========================================
+   BUTTON TEXT ROLL EFFECT ON HOVER
+========================================== */
+.roll-text {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.35;
+    vertical-align: middle;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.roll-char {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    height: 1.35em;
+    overflow: hidden;
+    line-height: 1.35em;
+    pointer-events: none;
+    vertical-align: middle;
+}
+
+.roll-char-inner {
+    display: inline-block;
+    height: 1.35em;
+    line-height: 1.35em;
+    transform: translateY(0);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--char-index, 0) * 0.012s);
+    will-change: transform;
+}
+
+.roll-char-inner.hover {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.roll-char.roll-space {
+    width: 0.3em;
+}
+
+/* Hover trigger across all buttons */
+.has-roll-text:hover .roll-char-inner,
+[data-roll-text]:hover .roll-char-inner,
+.btn-hero-white:hover .roll-char-inner,
+.btn-hero-dark:hover .roll-char-inner,
+.btn-modern:hover .roll-char-inner,
+.btn-submit-orc:hover .roll-char-inner,
+.pcard-link:hover .roll-char-inner,
+.btn-primary:hover .roll-char-inner,
+.btn:hover .roll-char-inner {
+    transform: translateY(-100%);
+    transition-delay: calc(var(--char-index, 0) * 0.014s);
+}
+
+.has-roll-text {
+    position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .roll-char-inner {
+        transition: none !important;
+        transform: none !important;
+    }
+    .roll-char-inner.hover {
+        display: none !important;
+    }
+}

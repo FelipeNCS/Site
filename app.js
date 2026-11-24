@@ -1392,6 +1392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLogoParticles();
     initGlassCards();
     initStackedCards();
+    initButtonTextRoll();
 });
 
 /* ==========================================
@@ -1483,4 +1484,99 @@ function initStackedCards() {
 
     observer.observe(stack);
     window.addEventListener('resize', onScroll, { passive: true });
+}
+
+
+/* ==========================================
+   BUTTON TEXT ROLL EFFECT ON HOVER
+========================================== */
+function initButtonTextRoll() {
+    const selectors = [
+        '.btn-hero-white',
+        '.btn-hero-dark',
+        '.btn-modern',
+        '.btn-submit-orc',
+        '.pcard-link',
+        '.btn-primary',
+        '.btn',
+        '[data-roll-text]'
+    ];
+
+    const buttons = document.querySelectorAll(selectors.join(', '));
+
+    buttons.forEach(btn => {
+        if (btn.dataset.rollInit) return;
+        
+        // Skip icon-only buttons or utility controls
+        if (btn.classList.contains('close-modal-btn') || 
+            btn.classList.contains('lang-btn-modern') ||
+            btn.classList.contains('footer-social-btn') ||
+            btn.classList.contains('nav-burger') ||
+            btn.classList.contains('c-lp-btn')) {
+            return;
+        }
+
+        // Find the target text node or simple span
+        let targetNode = null;
+        let isTextNode = true;
+
+        for (const child of btn.childNodes) {
+            if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
+                targetNode = child;
+                isTextNode = true;
+                break;
+            } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName === 'SPAN' &&
+                       !child.classList.contains('hero-play-icon') &&
+                       !child.classList.contains('dropdown-arrow') &&
+                       !child.querySelector('svg') && !child.querySelector('img')) {
+                if (child.textContent.trim().length > 0) {
+                    targetNode = child;
+                    isTextNode = false;
+                    break;
+                }
+            }
+        }
+
+        if (!targetNode) return;
+
+        const originalText = targetNode.textContent.trim();
+        if (!originalText || originalText.length === 0) return;
+
+        btn.dataset.rollInit = 'true';
+        btn.classList.add('has-roll-text');
+
+        if (!btn.getAttribute('aria-label')) {
+            btn.setAttribute('aria-label', originalText);
+        }
+
+        const rollContainer = document.createElement('span');
+        rollContainer.className = 'roll-text';
+        rollContainer.setAttribute('aria-hidden', 'true');
+
+        let charIndex = 0;
+        for (let i = 0; i < originalText.length; i++) {
+            const char = originalText[i];
+            const charSpan = document.createElement('span');
+            charSpan.className = 'roll-char';
+            charSpan.style.setProperty('--char-index', charIndex);
+
+            if (char === ' ') {
+                charSpan.classList.add('roll-space');
+                charSpan.innerHTML = '<span class="roll-char-inner primary">&nbsp;</span><span class="roll-char-inner hover">&nbsp;</span>';
+            } else {
+                const escaped = char === '&' ? '&amp;' : (char === '<' ? '&lt;' : (char === '>' ? '&gt;' : char));
+                charSpan.innerHTML = `<span class="roll-char-inner primary">${escaped}</span><span class="roll-char-inner hover">${escaped}</span>`;
+            }
+
+            rollContainer.appendChild(charSpan);
+            charIndex++;
+        }
+
+        if (isTextNode) {
+            btn.replaceChild(rollContainer, targetNode);
+        } else {
+            targetNode.innerHTML = '';
+            targetNode.appendChild(rollContainer);
+        }
+    });
 }
