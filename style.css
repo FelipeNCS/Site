@@ -5755,3 +5755,567 @@ body {
         padding-bottom: max(20px, env(safe-area-inset-bottom));
     }
 }
+
+/* ==========================================
+   SEÇÃO O QUE CONSTRUÍMOS (ESTILO PROFITIZE)
+========================================== */
+.section-construimos {
+    width: 100%;
+    background-color: #000000;
+    padding: 100px 20px 80px 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+}
+
+.construimos-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.construimos-head {
+    text-align: center;
+    margin-bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 760px;
+}
+
+.construimos-pill {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Geist', sans-serif;
+}
+
+.construimos-title {
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 450;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.construimos-subtitle {
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: -0.015em;
+    margin: 0;
+}
+
+.construimos-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.c-card {
+    background: #0b0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.c-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8);
+}
+
+.c-card-media {
+    aspect-ratio: 10 / 11;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    background: #09090b;
+    isolation: isolate;
+}
+
+.c-media-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: brightness(0.85);
+}
+
+.c-card:hover .c-media-bg {
+    transform: scale(1.05);
+}
+
+.c-mini {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 86%;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.c-card:hover .c-mini {
+    transform: translate(-50%, calc(-50% - 4px));
+}
+
+.c-win {
+    border-radius: 12px;
+    background: rgba(12, 11, 10, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    font-family: 'Geist', sans-serif;
+    color: #ffffff;
+}
+
+.c-win-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.c-win-bar i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: inline-block;
+}
+
+.c-win-bar span {
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+}
+
+/* Card 1: Landing Page inside mockup */
+.c-lp {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.c-lp-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.c-lp-logo {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: #ffffff;
+}
+
+.c-lp-links {
+    display: flex;
+    gap: 6px;
+}
+
+.c-lp-links i {
+    width: 16px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+.c-lp-chip {
+    width: 28px;
+    height: 10px;
+    border-radius: 999px;
+    background: #f4ede4;
+}
+
+.c-lp-tag {
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 10px;
+    margin: 0;
+}
+
+.c-lp-title {
+    margin: 6px 0 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.c-lp-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.c-lp-lines i {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    display: block;
+}
+
+.c-lp-lines i:first-child { width: 80%; }
+.c-lp-lines i:last-child { width: 55%; }
+
+.c-lp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f4ede4;
+    color: #09090b;
+    border-radius: 999px;
+    padding: 3px 4px 3px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(244, 237, 228, 0.3);
+}
+
+.c-lp-btn b {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #09090b;
+    color: #f4ede4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-lp-btn svg {
+    width: 9px;
+    height: 9px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+.c-lp-logos {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.c-lp-logos i {
+    flex: 1;
+    height: 5px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Card 2: Tree inside mockup */
+.c-tree {
+    padding: 12px 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 4px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.c-node svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.c-node--root {
+    flex-direction: row;
+    padding: 4px 10px;
+    color: #ffffff;
+    gap: 5px;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.c-tree-lines {
+    color: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.c-tree-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    width: 100%;
+}
+
+.c-tree-row--skel {
+    margin-top: 6px;
+}
+
+.c-skel {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.c-skel i {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    display: block;
+}
+
+.c-skel i:nth-child(2) { width: 70%; }
+.c-skel i:nth-child(3) { width: 45%; }
+
+/* Card 3: Dashboard inside mockup */
+.c-dash {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+}
+
+.c-dash-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.c-side-ico {
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-side-ico.is-on {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.c-side-ico svg {
+    width: 10px;
+    height: 10px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.c-dash-main {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.c-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+}
+
+.c-kpi {
+    border-radius: 5px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.c-kpi-k {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.c-kpi-v {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.c-kpi-d {
+    color: #4ade80;
+    font-size: 9px;
+}
+
+.c-dash-row {
+    display: grid;
+    grid-template-columns: 1fr 48px;
+    gap: 4px;
+}
+
+.c-chart, .c-donut {
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4px;
+}
+
+.c-chart svg {
+    width: 100%;
+    height: 40px;
+    overflow: visible;
+}
+
+.c-chart-area {
+    fill: rgba(244, 237, 228, 0.08);
+    stroke: none;
+}
+
+.c-chart-line {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 1.25px;
+}
+
+.c-donut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.c-donut svg {
+    width: 32px;
+    height: 32px;
+    transform: rotate(-90deg);
+}
+
+.c-donut circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 3.5px;
+}
+
+.c-donut .c-donut-arc {
+    stroke: #f4ede4;
+    stroke-dasharray: 68 100;
+    stroke-linecap: round;
+}
+
+.c-donut span {
+    font-size: 9px;
+    font-weight: 600;
+    color: #ffffff;
+    position: absolute;
+}
+
+.c-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.c-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 8px;
+}
+
+.c-row i {
+    display: block;
+    border-radius: 2px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.c-row i:nth-child(1) { width: 5px; height: 5px; border-radius: 50%; }
+.c-row i:nth-child(2) { flex: 1; }
+.c-row i:nth-child(3) { width: 25%; }
+.c-row i:nth-child(4) { width: 14px; }
+
+/* Text below media */
+.c-card-text {
+    padding: 20px 14px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.c-card-title {
+    font-family: 'Geist', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.c-card-desc {
+    font-family: 'Geist', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+@media (max-width: 991px) {
+    .construimos-cards {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
