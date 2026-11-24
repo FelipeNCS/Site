@@ -1391,6 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTermsModal();
     initLogoParticles();
     initGlassCards();
+    initStackedCards();
 });
 
 /* ==========================================
@@ -1420,4 +1421,66 @@ function initGlassCards() {
             }
         });
     });
+}
+
+
+/* ==========================================
+   STACKED CARDS SCROLL EFFECT (PROJETOS)
+========================================== */
+function initStackedCards() {
+    const cards = [...document.querySelectorAll('[data-pcard]')];
+    const stack = document.querySelector('[data-stack]');
+    if (!cards.length || !stack) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    let ticking = false;
+    const updateStack = () => {
+        ticking = false;
+        const scaleFactor = 0.035; // gentle shrink per card layered on top
+        const shadeFactor = 0.25;  // gentle darken
+
+        const rects = cards.map(c => c.getBoundingClientRect());
+        const overlaps = cards.map((card, i) => {
+            if (i === 0) return 0;
+            const prev = cards[i - 1];
+            const prevHeight = prev.offsetHeight;
+            const topDiff = parseFloat(getComputedStyle(card).top) - parseFloat(getComputedStyle(prev).top);
+            const travel = prevHeight - topDiff;
+            if (travel <= 0) return 0;
+            return Math.min(1, Math.max(0, (rects[i - 1].top + prevHeight - rects[i].top) / travel));
+        });
+
+        cards.forEach((card, i) => {
+            let covered = 0;
+            for (let j = i + 1; j < cards.length; j++) {
+                covered += overlaps[j];
+            }
+            card.style.transform = covered > 0 ? `scale(${1 - covered * scaleFactor})` : '';
+            const shade = card.querySelector('.pcard-shade');
+            if (shade) {
+                shade.style.opacity = String(Math.min(0.5, covered * shadeFactor));
+            }
+        });
+    };
+
+    const onScroll = () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(updateStack);
+        }
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        } else {
+            window.removeEventListener('scroll', onScroll);
+        }
+    });
+
+    observer.observe(stack);
+    window.addEventListener('resize', onScroll, { passive: true });
 }

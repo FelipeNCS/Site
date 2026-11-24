@@ -70,7 +70,7 @@ body {
     color: #ffffff !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.5;
-    overflow-x: hidden;
+    overflow-x: clip;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -6319,3 +6319,255 @@ body {
     }
 }
 
+
+
+/* ==========================================
+   SEÇÃO PROJETOS (CARDS EMPILHADOS NO SCROLL)
+========================================== */
+.section-projetos {
+    width: 100%;
+    background-color: #000000;
+    padding: 60px 20px 100px 20px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    --stack-top: 100px;
+    --strip: 64px;
+    --peek: 26px;
+    --card-h: clamp(520px, calc(100svh - var(--stack-top) - 40px), 680px);
+}
+
+.projetos-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.projetos-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 56px;
+}
+
+.projetos-head-main {
+    max-width: 640px;
+}
+
+.projetos-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.projetos-title {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(32px, 4.2vw, 54px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin: 0;
+}
+
+.projetos-head-aside {
+    max-width: 440px;
+    padding-bottom: 8px;
+}
+
+.projetos-desc {
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* STACK CONTAINER */
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.pcard {
+    position: sticky;
+    top: calc(var(--stack-top) + var(--i) * var(--peek));
+    height: var(--card-h);
+    border-radius: 28px;
+    isolation: isolate;
+    background: radial-gradient(70% 80% at 50% 75%, color-mix(in srgb, var(--tom, #7fa9c6) 24%, transparent), transparent 70%), #121110;
+    transform-origin: 50% 0;
+    overflow: hidden;
+    box-shadow: 0 -24px 48px -24px rgba(0, 0, 0, 0.95), 0 20px 40px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.12s ease-out;
+}
+
+.pcard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    height: var(--strip);
+    padding: 0 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.chip-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.chip b {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.chip-line {
+    font-family: 'Geist', sans-serif;
+    color: rgba(242, 237, 228, 0.7);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.pcard-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(242, 237, 228, 0.7);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.pcard-link svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease;
+}
+
+.pcard-link:hover {
+    color: #ffffff;
+}
+
+.pcard-link:hover svg {
+    transform: translate(2px, -2px);
+}
+
+.pmon {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--strip) + 16px);
+    width: min(76%, (var(--card-h) - var(--strip) - 40px) * 1.55);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.pmon:after {
+    content: "";
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.15) 48px, transparent 120px),
+                linear-gradient(90deg, #4a4a4d, #9c9ca0 10%, #b8b8bc 30%, #8e8e92 62%, #a9a9ad 85%, #4a4a4d);
+    width: 18%;
+    height: 100vh;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
+}
+
+.pmon-tela {
+    background: #050505;
+    border-radius: 12px;
+    padding: 10px 10px 0 10px;
+    box-shadow: 0 0 0 1.5px #a7a7aa, 0 30px 70px -20px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.pmon-tela img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px 6px 0 0;
+    display: block;
+}
+
+.pcard-shade {
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+@media (max-width: 860px) {
+    .section-projetos {
+        --stack-top: 80px;
+        --strip: 54px;
+        --peek: 16px;
+        --card-h: clamp(380px, 68vh, 520px);
+        padding: 30px 16px 80px 16px;
+    }
+    .projetos-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 36px;
+    }
+    .projetos-title {
+        font-size: 30px;
+    }
+    .projetos-desc {
+        font-size: 14px;
+    }
+    .chip-line {
+        display: none;
+    }
+    .pmon {
+        width: 90%;
+        top: calc(var(--strip) + 12px);
+    }
+}
