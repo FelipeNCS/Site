@@ -4351,8 +4351,9 @@ body.light-theme .form-group textarea {
 .navbar-modern-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 40px;
-    /* Matched with hero container padding */
+    width: 100%;
 }
 
 .logo-modern {
@@ -4361,8 +4362,8 @@ body.light-theme .form-group textarea {
     gap: 10px;
     text-decoration: none;
     color: #fff;
-    margin-right: 40px;
-    /* Space between logo and menu */
+    flex: 1;
+    margin-right: 0;
 }
 
 .logo-modern .logo-img {
@@ -4372,18 +4373,20 @@ body.light-theme .form-group textarea {
 
 .nav-menu-modern {
     display: flex;
-    gap: 25px;
+    gap: 28px;
     align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
 }
 
 .nav-link-modern {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+    font-size: 0.92rem;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     transition: color 0.2s ease;
 }
 
@@ -4394,9 +4397,10 @@ body.light-theme .form-group textarea {
 .navbar-actions-modern {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 15px;
-    margin-left: auto;
-    /* Pushes the actions to the far right */
+    flex: 1;
+    margin-left: 0;
 }
 
 .lang-btn-modern {
