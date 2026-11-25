@@ -6653,9 +6653,9 @@ body {
 @media (max-width: 860px) {
     .section-projetos {
         --stack-top: 80px;
-        --strip: 54px;
-        --peek: 16px;
-        --card-h: clamp(380px, 68vh, 520px);
+        --strip: 52px;
+        --peek: 14px;
+        --card-h: clamp(290px, 46vh, 340px);
         padding: 30px 16px 80px 16px;
     }
     .projetos-head {
@@ -6676,7 +6676,15 @@ body {
     .pmon,
     .pcard:first-of-type .pmon {
         width: 95%;
-        top: calc(var(--strip) + 10px);
+        top: calc(var(--strip) + 8px);
+    }
+    .pmon:after {
+        display: none !important;
+    }
+    .pmon-tela {
+        border-radius: 14px;
+        padding: 6px 6px 0 6px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
 }
 
