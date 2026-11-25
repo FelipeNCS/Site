@@ -4516,6 +4516,7 @@ body.light-theme .form-group textarea {
     border-radius: 0 !important;
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     background-color: #000000;
     background-image: url('images/hero-cosmic-clean.jpg?v=3200');
     background-position: center top;
@@ -4530,6 +4531,7 @@ body.light-theme .form-group textarea {
     position: relative;
     overflow: hidden;
     box-shadow: none;
+    box-sizing: border-box;
 }
 
 /* Atmospheric bottom vignette */
@@ -4708,9 +4710,15 @@ body.light-theme .form-group textarea {
 /* Responsive adjustments */
 @media (max-width: 991px) {
     .hero-modern.hero-cosmic-section {
-        min-height: auto;
-        padding-top: 120px;
-        padding-bottom: 70px;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: calc(100px + env(safe-area-inset-top, 0px));
+        padding-bottom: calc(50px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
     }
 
     .hero-cosmic-title {
@@ -4721,8 +4729,15 @@ body.light-theme .form-group textarea {
 
 @media (max-width: 600px) {
     .hero-modern.hero-cosmic-section {
-        padding-top: 95px;
-        padding-bottom: 50px;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: calc(85px + env(safe-area-inset-top, 0px));
+        padding-bottom: calc(45px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
     }
 
     .hero-cosmic-title {
