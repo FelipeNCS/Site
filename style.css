@@ -150,6 +150,8 @@ body,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    max-width: fit-content;
 }
 
 .logo-particles-canvas {
@@ -165,6 +167,8 @@ body,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    max-width: fit-content;
 }
 
 .logo-modern .logo-img {

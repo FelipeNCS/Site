@@ -1277,7 +1277,7 @@ function renderReviewsMarquee() {
 
 // Pixelated Purple & White Particle Generator for LEAD Logo
 function initLogoParticles() {
-    const wrappers = document.querySelectorAll('.logo-wrapper, .logo-modern');
+    const wrappers = document.querySelectorAll('.logo-wrapper');
     if (!wrappers.length) return;
 
     wrappers.forEach(wrapper => {
@@ -1294,16 +1294,21 @@ function initLogoParticles() {
         let height = 0;
         let particles = [];
         let isHovered = false;
+        const marginX = 4;
+        const marginY = 16;
 
         function resize() {
-            const rect = wrapper.getBoundingClientRect();
-            const margin = 20;
-            canvas.width = Math.round((rect.width || 110) + margin * 2);
-            canvas.height = Math.round((rect.height || 26) + margin * 2);
+            const img = wrapper.querySelector('img') || wrapper;
+            const rect = img.getBoundingClientRect();
+            const imgW = Math.round(rect.width || 136);
+            const imgH = Math.round(rect.height || 24);
+
+            canvas.width = imgW + marginX * 2;
+            canvas.height = imgH + marginY * 2;
             width = canvas.width;
             height = canvas.height;
-            canvas.style.top = `-${margin}px`;
-            canvas.style.left = `-${margin}px`;
+            canvas.style.top = `-${marginY}px`;
+            canvas.style.left = `-${marginX}px`;
             canvas.style.width = `${width}px`;
             canvas.style.height = `${height}px`;
         }
@@ -1331,28 +1336,30 @@ function initLogoParticles() {
         ];
 
         function createParticle(burst = false) {
-            const margin = 20;
-            const size = Math.random() < 0.6 ? 2 : (Math.random() < 0.85 ? 3 : 2.5);
-            // Spawn across the logo width and from middle to bottom edge
-            const x = margin + Math.random() * (width - margin * 2);
-            const y = margin + (height - margin * 2) * (0.35 + Math.random() * 0.65);
+            const imgW = Math.max(20, width - marginX * 2);
+            const imgH = Math.max(10, height - marginY * 2);
+            const size = Math.random() < 0.65 ? 2 : (Math.random() < 0.9 ? 2.5 : 3);
+            
+            // Spawn strictly over the logo width, right on the letters
+            const x = marginX + Math.random() * imgW;
+            const y = marginY + imgH * (0.35 + Math.random() * 0.65);
 
             return {
                 x: x,
                 y: y,
                 size: size,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                vx: (Math.random() - 0.5) * (burst ? 1.2 : 0.4),
-                vy: -(Math.random() * (burst ? 1.1 : 0.6) + 0.25),
+                vx: (Math.random() - 0.5) * (burst ? 0.35 : 0.16), // minimal lateral drift
+                vy: -(Math.random() * (burst ? 0.8 : 0.5) + 0.25), // float upwards
                 alpha: 1,
-                decay: Math.random() * 0.012 + 0.008
+                decay: Math.random() * 0.014 + 0.009
             };
         }
 
         const hoverTarget = wrapper.closest('a') || wrapper;
         hoverTarget.addEventListener('mouseenter', () => {
             isHovered = true;
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 6; i++) {
                 particles.push(createParticle(true));
             }
         });
@@ -1369,7 +1376,7 @@ function initLogoParticles() {
 
             // Subtle minimalist spawn rate
             const spawnRate = isHovered ? 4 : 8;
-            const maxCount = isHovered ? 24 : 12;
+            const maxCount = isHovered ? 18 : 10;
 
             if (frameCount % spawnRate === 0 && particles.length < maxCount) {
                 particles.push(createParticle(isHovered));
@@ -1381,7 +1388,8 @@ function initLogoParticles() {
                 p.y += p.vy;
                 p.alpha -= p.decay;
 
-                if (p.alpha <= 0 || p.y < 0 || p.x < 0 || p.x > width) {
+                // Remove particle if it fades out or strays beyond the logo bounds
+                if (p.alpha <= 0 || p.y < 0 || p.x < marginX - 4 || p.x > width - marginX + 4) {
                     particles.splice(i, 1);
                     continue;
                 }
@@ -1396,6 +1404,7 @@ function initLogoParticles() {
         }
 
         setTimeout(resize, 100);
+        setTimeout(resize, 500);
         animate();
     });
 }
