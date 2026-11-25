@@ -4568,10 +4568,50 @@ body.light-theme .form-group textarea {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
+}
+
+/* Minimalist purple ambient glow behind main text */
+.hero-cosmic-content::before {
+    content: '';
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(680px, 92vw);
+    height: 280px;
+    background: radial-gradient(
+        ellipse 65% 55% at 50% 50%,
+        rgba(168, 85, 247, 0.32) 0%,
+        rgba(126, 34, 206, 0.18) 42%,
+        rgba(109, 40, 217, 0.08) 68%,
+        transparent 82%
+    );
+    filter: blur(52px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.9;
+    animation: cosmicGlowPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes cosmicGlowPulse {
+    0% {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(0.96);
+        filter: blur(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+        filter: blur(62px);
+    }
 }
 
 /* Headline with Geist font matching reference */
 .hero-cosmic-title {
+    position: relative;
+    z-index: 1;
     font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: clamp(2.2rem, 4.2vw, 3.8rem);
     font-weight: 450;
@@ -4608,6 +4648,8 @@ body.light-theme .form-group textarea {
 
 /* Subtitle / Description with Geist font */
 .hero-cosmic-subtitle {
+    position: relative;
+    z-index: 1;
     font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: clamp(0.95rem, 1.2vw, 1.15rem);
     font-weight: 400;
@@ -4635,6 +4677,8 @@ body.light-theme .form-group textarea {
 
 /* Action Buttons */
 .hero-cosmic-actions {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4728,6 +4772,20 @@ body.light-theme .form-group textarea {
 }
 
 @media (max-width: 600px) {
+    .hero-cosmic-content::before {
+        top: 22%;
+        width: min(340px, 88vw);
+        height: 210px;
+        filter: blur(36px);
+        background: radial-gradient(
+            ellipse 65% 55% at 50% 50%,
+            rgba(168, 85, 247, 0.42) 0%,
+            rgba(126, 34, 206, 0.24) 42%,
+            rgba(109, 40, 217, 0.1) 68%,
+            transparent 82%
+        );
+    }
+
     .hero-modern.hero-cosmic-section {
         min-height: 100vh;
         min-height: 100svh;
@@ -6053,8 +6111,13 @@ body {
     display: block;
 }
 
-.c-lp-lines i:first-child { width: 80%; }
-.c-lp-lines i:last-child { width: 55%; }
+.c-lp-lines i:first-child {
+    width: 80%;
+}
+
+.c-lp-lines i:last-child {
+    width: 55%;
+}
 
 .c-lp-btn {
     display: inline-flex;
@@ -6177,8 +6240,13 @@ body {
     display: block;
 }
 
-.c-skel i:nth-child(2) { width: 70%; }
-.c-skel i:nth-child(3) { width: 45%; }
+.c-skel i:nth-child(2) {
+    width: 70%;
+}
+
+.c-skel i:nth-child(3) {
+    width: 45%;
+}
 
 /* Card 3: Dashboard inside mockup */
 .c-dash {
@@ -6265,7 +6333,8 @@ body {
     gap: 4px;
 }
 
-.c-chart, .c-donut {
+.c-chart,
+.c-donut {
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 4px;
@@ -6340,10 +6409,23 @@ body {
     background: rgba(255, 255, 255, 0.15);
 }
 
-.c-row i:nth-child(1) { width: 5px; height: 5px; border-radius: 50%; }
-.c-row i:nth-child(2) { flex: 1; }
-.c-row i:nth-child(3) { width: 25%; }
-.c-row i:nth-child(4) { width: 14px; }
+.c-row i:nth-child(1) {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.c-row i:nth-child(2) {
+    flex: 1;
+}
+
+.c-row i:nth-child(3) {
+    width: 25%;
+}
+
+.c-row i:nth-child(4) {
+    width: 14px;
+}
 
 /* Text below media */
 .c-card-text {
@@ -6609,7 +6691,7 @@ body {
     content: "";
     z-index: -1;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.15) 48px, transparent 120px),
-                linear-gradient(90deg, #4a4a4d, #9c9ca0 10%, #b8b8bc 30%, #8e8e92 62%, #a9a9ad 85%, #4a4a4d);
+        linear-gradient(90deg, #4a4a4d, #9c9ca0 10%, #b8b8bc 30%, #8e8e92 62%, #a9a9ad 85%, #4a4a4d);
     width: 16%;
     height: 100vh;
     position: absolute;
@@ -6658,29 +6740,36 @@ body {
         --card-h: clamp(290px, 46vh, 340px);
         padding: 30px 16px 80px 16px;
     }
+
     .projetos-head {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
         margin-bottom: 36px;
     }
+
     .projetos-title {
         font-size: 30px;
     }
+
     .projetos-desc {
         font-size: 14px;
     }
+
     .chip-line {
         display: none;
     }
+
     .pmon,
     .pcard:first-of-type .pmon {
         width: 95%;
         top: calc(var(--strip) + 8px);
     }
+
     .pmon:after {
         display: none !important;
     }
+
     .pmon-tela {
         border-radius: 14px;
         padding: 6px 6px 0 6px;
@@ -6754,10 +6843,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .hero-cosmic-content::before {
+        animation: none !important;
+    }
     .roll-char-inner {
         transition: none !important;
         transform: none !important;
     }
+
     .roll-char-inner.hover {
         display: none !important;
     }
