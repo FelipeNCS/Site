@@ -1456,21 +1456,34 @@ function initGlassCards() {
 
 
 /* ==========================================
-   STACKED CARDS SCROLL EFFECT (PROJETOS)
+   STACKED CARDS SCROLL EFFECT (PROJETOS & CONSTRUÍMOS)
 ========================================== */
-function initStackedCards() {
-    const cards = [...document.querySelectorAll('[data-pcard]')];
-    const stack = document.querySelector('[data-stack]');
+function setupStackEffect(cardsSelector, stackSelector, options = {}) {
+    const cards = [...document.querySelectorAll(cardsSelector)];
+    const stack = document.querySelector(stackSelector);
     if (!cards.length || !stack) return;
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
+    const scaleFactor = options.scaleFactor || 0.04;
+    const shadeFactor = options.shadeFactor || 0.35;
+    const shadeSelector = options.shadeSelector || '.pcard-shade';
+    const mobileOnly = options.mobileOnly || false;
+
     let ticking = false;
     const updateStack = () => {
         ticking = false;
-        const scaleFactor = 0.04; // 4% subtle cinematic scale per card
-        const shadeFactor = 0.35; // 35% depth darkening per card
+
+        // Se for mobileOnly e estiver em tela grande, reseta transformações
+        if (mobileOnly && window.innerWidth > 991) {
+            cards.forEach(card => {
+                card.style.transform = '';
+                const shade = card.querySelector(shadeSelector);
+                if (shade) shade.style.opacity = '0';
+            });
+            return;
+        }
 
         const rects = cards.map(c => c.getBoundingClientRect());
         const overlaps = cards.map((card, i) => {
@@ -1489,7 +1502,7 @@ function initStackedCards() {
                 covered += overlaps[j];
             }
             card.style.transform = covered > 0 ? `scale(${1 - covered * scaleFactor})` : '';
-            const shade = card.querySelector('.pcard-shade');
+            const shade = card.querySelector(shadeSelector);
             if (shade) {
                 shade.style.opacity = String(Math.min(0.7, covered * shadeFactor));
             }
@@ -1506,6 +1519,23 @@ function initStackedCards() {
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     updateStack();
+}
+
+function initStackedCards() {
+    // 1. Efeito nos Projetos (Desktop & Mobile)
+    setupStackEffect('[data-pcard]', '[data-stack]', {
+        scaleFactor: 0.04,
+        shadeFactor: 0.35,
+        shadeSelector: '.pcard-shade'
+    });
+
+    // 2. Efeito cinematográfico no "O que construímos" (apenas no Mobile)
+    setupStackEffect('[data-ccard]', '[data-cstack]', {
+        scaleFactor: 0.04,
+        shadeFactor: 0.38,
+        shadeSelector: '.c-card-shade',
+        mobileOnly: true
+    });
 }
 
 

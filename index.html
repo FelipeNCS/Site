@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=5100">
+    <link rel="stylesheet" href="style.css?v=5200">
     <!-- GSAP Animation Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
@@ -180,9 +180,9 @@
                 <p class="construimos-subtitle">Landing pages, sites e interfaces de produto com identidade própria, entregues em código de verdade, em Astro ou Next.js. Sem template e sem construtor de sites.</p>
             </header>
 
-            <div class="construimos-cards">
+            <div class="construimos-cards" data-cstack>
                 <!-- Card 1: Landing pages -->
-                <article class="c-card c-card--lp">
+                <article class="c-card c-card--lp" style="--i:0;" data-ccard>
                     <div class="c-card-media">
                         <img src="images/card-busto.webp" alt="Landing pages" class="c-media-bg">
                         <div class="c-mini">
@@ -210,10 +210,11 @@
                         <h3 class="c-card-title">Landing pages</h3>
                         <p class="c-card-desc">Uma página com uma ideia só, desenhada pra apresentar, vender e converter.</p>
                     </div>
+                    <div class="c-card-shade" aria-hidden="true"></div>
                 </article>
 
                 <!-- Card 2: Sites -->
-                <article class="c-card c-card--sites">
+                <article class="c-card c-card--sites" style="--i:1;" data-ccard>
                     <div class="c-card-media">
                         <img src="images/card-aqueduto.webp" alt="Sites" class="c-media-bg">
                         <div class="c-mini">
@@ -250,10 +251,11 @@
                         <h3 class="c-card-title">Sites</h3>
                         <p class="c-card-desc">Várias páginas na mesma linguagem, do institucional ao blog, prontas pra crescer com a marca.</p>
                     </div>
+                    <div class="c-card-shade" aria-hidden="true"></div>
                 </article>
 
                 <!-- Card 3: Produto / Dashboard -->
-                <article class="c-card c-card--produto">
+                <article class="c-card c-card--produto" style="--i:2;" data-ccard>
                     <div class="c-card-media">
                         <img src="images/card-montanhas.webp" alt="Produto" class="c-media-bg">
                         <div class="c-mini">
@@ -299,6 +301,7 @@
                         <h3 class="c-card-title">Produto</h3>
                         <p class="c-card-desc">Interfaces, dashboards e apps web com o mesmo cuidado visual de uma landing page.</p>
                     </div>
+                    <div class="c-card-shade" aria-hidden="true"></div>
                 </article>
             </div>
         </div>
@@ -325,7 +328,10 @@
                         <span class="chip">
                             <img class="chip-mark" src="images/lead-erp-mark.webp" alt="Lead ERP Logo" width="32" height="32">
                             <b>Lead ERP</b>
-                            <span class="chip-line" title="Painel de controle, PDV, estoque, clientes, cardápio virtual, juros corridos automáticos, e muitas funcionalidades dentro dele!">Painel de controle, PDV, estoque, clientes, cardápio virtual, juros corridos automáticos, e muitas funcionalidades dentro dele!</span>
+                            <span class="chip-line"
+                                title="Painel de controle, PDV, estoque, clientes, cardápio virtual, juros corridos automáticos, e muitas funcionalidades dentro dele!">Painel
+                                de controle, PDV, estoque, clientes, cardápio virtual, juros corridos automáticos, e
+                                muitas funcionalidades dentro dele!</span>
                         </span>
                         <a class="pcard-link" href="https://erp.leadev.store" target="_blank" rel="noopener">
                             Ver ao vivo
@@ -959,6 +965,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=3400"></script>
+    <script src="app.js?v=3600"></script>
 </body>
 </html>

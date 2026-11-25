@@ -5884,7 +5884,20 @@ body {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    isolation: isolate;
     transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.c-card-shade {
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 28px;
+    transition: opacity 0.1s linear;
 }
 
 .c-card:hover {
@@ -6360,10 +6373,44 @@ body {
 }
 
 @media (max-width: 991px) {
+    .section-construimos {
+        --c-stack-top: 80px;
+        --c-peek: 16px;
+        padding: 50px 16px 80px 16px;
+    }
+
     .construimos-cards {
-        grid-template-columns: 1fr;
-        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        max-width: 440px;
+        width: 100%;
         margin: 0 auto;
+        position: relative;
+        padding-bottom: 60px;
+    }
+
+    .c-card {
+        position: sticky;
+        top: calc(var(--c-stack-top, 80px) + var(--i, 0) * var(--c-peek, 16px));
+        z-index: calc(10 + var(--i, 0));
+        transform-origin: 50% 0;
+        box-shadow: 0 -22px 45px -12px rgba(0, 0, 0, 0.95), 0 25px 50px rgba(0, 0, 0, 0.85);
+        will-change: transform;
+        overflow: hidden;
+        background: #0d0c0c;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-construimos {
+        --c-stack-top: 75px;
+        --c-peek: 14px;
+        padding: 40px 14px 60px 14px;
+    }
+
+    .construimos-cards {
+        gap: 28px;
     }
 }
 
