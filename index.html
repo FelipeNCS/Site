@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=5600">
+    <link rel="stylesheet" href="style.css?v=5700">
     <!-- GSAP Animation Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
@@ -302,52 +302,92 @@
                 <!-- Card 2: Sites -->
                 <article class="c-card c-card--sites" style="--i:1;" data-ccard>
                     <div class="c-card-media">
-                        <img src="images/card-aqueduto.webp" alt="Sites" class="c-media-bg">
+                        <img src="images/card-sites-bg.webp" alt="Sites" class="c-media-bg">
                         <div class="c-mini">
-                            <div class="c-win">
+                            <div class="c-win c-win--sites">
                                 <div class="c-win-bar">
                                     <i></i><i></i><i></i>
-                                    <span>Mapa do site</span>
+                                    <span>suamarca.com.br</span>
+                                    <span class="c-win-badge-live c-win-badge-live--sites"><span class="c-dot-pulse c-dot-pulse--sites"></span>Google #1</span>
                                 </div>
-                                <div class="c-tree">
-                                    <span class="c-node c-node--root">
-                                        <svg viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.5 7.5 8 3l5.5 4.5V13a.5.5 0 0 1-.5.5H9.5V10h-3v3.5H3a.5.5 0 0 1-.5-.5Z">
-                                            </path>
-                                        </svg>
-                                        Home
-                                    </span>
-                                    <svg class="c-tree-lines" viewBox="0 0 240 24" preserveAspectRatio="none">
-                                        <path
-                                            d="M120 0v10M30 24v-8a6 6 0 0 1 6-6h168a6 6 0 0 1 6 6v8M90 10v14M150 10v14">
-                                        </path>
-                                    </svg>
-                                    <div class="c-tree-row">
-                                        <span class="c-node"><svg viewBox="0 0 16 16">
-                                                <path
-                                                    d="M4 2.5h5l3 3V13a.5.5 0 0 1-.5.5h-7.5A.5.5 0 0 1 3.5 13V3a.5.5 0 0 1 .5-.5ZM9 2.5V5.5h3M5.5 8.5h5M5.5 11h3.5">
-                                                </path>
-                                            </svg>Sobre</span>
-                                        <span class="c-node"><svg viewBox="0 0 16 16">
-                                                <path
-                                                    d="m8 2.5 5.5 3L8 8.5l-5.5-3Zm-5.5 5L8 10.5l5.5-3M2.5 10 8 13l5.5-3">
-                                                </path>
-                                            </svg>Serviços</span>
-                                        <span class="c-node"><svg viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3 3h10a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5v-9A.5.5 0 0 1 3 3Zm-.5 7.5 3-3 3 3 2-2 3 3M10.25 6.25h.01">
-                                                </path>
-                                            </svg>Projetos</span>
-                                        <span class="c-node"><svg viewBox="0 0 16 16">
-                                                <path d="M2.5 4h11v8.5h-11Zm0 .5L8 9l5.5-4.5"></path>
-                                            </svg>Contato</span>
+                                <div class="c-funnel-body">
+                                    <!-- Headline / Proposta de Valor -->
+                                    <div class="c-funnel-head">
+                                        <span class="c-funnel-tag c-funnel-tag--sites">Arquitetura & Autoridade</span>
+                                        <p class="c-funnel-title">Presença digital completa e escalável</p>
                                     </div>
-                                    <div class="c-tree-row c-tree-row--skel">
-                                        <span class="c-skel"><i></i><i></i><i></i></span>
-                                        <span class="c-skel"><i></i><i></i><i></i></span>
-                                        <span class="c-skel"><i></i><i></i><i></i></span>
-                                        <span class="c-skel"><i></i><i></i><i></i></span>
+
+                                    <!-- Etapas do Processo -->
+                                    <div class="c-funnel-steps">
+                                        <div class="c-fstep">
+                                            <div class="c-fstep-ico">
+                                                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                                    <path d="M3 9h18"></path>
+                                                    <path d="M9 21V9"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="c-fstep-txt">
+                                                <span class="c-fstep-num">1. Estrutura</span>
+                                                <span class="c-fstep-name">Multi-Páginas</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-fstep-arrow">
+                                            <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                                <path d="M3 8h10M9 4l4 4-4 4"></path>
+                                            </svg>
+                                        </div>
+
+                                        <div class="c-fstep is-seo">
+                                            <div class="c-fstep-ico">
+                                                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="11" cy="11" r="8"></circle>
+                                                    <path d="m21 21-4.3-4.3"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="c-fstep-txt">
+                                                <span class="c-fstep-num">2. Busca</span>
+                                                <span class="c-fstep-name">SEO Orgânico</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-fstep-arrow">
+                                            <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                                <path d="M3 8h10M9 4l4 4-4 4"></path>
+                                            </svg>
+                                        </div>
+
+                                        <div class="c-fstep is-authority">
+                                            <div class="c-fstep-ico">
+                                                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                                    <path d="m9 12 2 2 4-4"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="c-fstep-txt">
+                                                <span class="c-fstep-num">3. Autoridade</span>
+                                                <span class="c-fstep-name">Credibilidade</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Notificação Flutuante de Resultado -->
+                                    <div class="c-funnel-toast c-funnel-toast--sites">
+                                        <div class="c-toast-avatar c-toast-avatar--seo">
+                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="c-toast-body">
+                                            <div class="c-toast-header">
+                                                <span class="c-toast-lead">Busca Orgânica do Google</span>
+                                                <span class="c-toast-badge c-toast-badge--seo">Score 100</span>
+                                            </div>
+                                            <p class="c-toast-msg">"Cliente encontrou o site no Google e pediu orçamento."</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
