@@ -16,9 +16,11 @@
         href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=5800">
+    <link rel="stylesheet" href="style.css?v=5900">
     <!-- GSAP Animation Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <style>
         /* Estilos inline para evitar problemas de cache do navegador */
         .hero-service-shortcuts {
@@ -835,7 +837,7 @@
             </div>
 
             <div class="terms-modal-body-card">
-                <div class="terms-scroll-area">
+                <div class="terms-scroll-area" data-lenis-prevent>
                     <p class="terms-intro"><strong>Prezado usuário,</strong></p>
                     <p>
                         Agradecemos por acessar a plataforma da <strong>LEAD</strong> (<span
@@ -1231,7 +1233,7 @@
                 <div class="r-modal-divider"></div>
 
                 <!-- Reviews Feed / Empty State -->
-                <div class="r-modal-feed" id="rm-feed-container">
+                <div class="r-modal-feed" id="rm-feed-container" data-lenis-prevent>
                     <!-- If empty: "Não há nenhuma avaliação para este plugin ainda." -->
                 </div>
 
@@ -1298,7 +1300,7 @@
         </div>
 
         <!-- Custom JS -->
-        <script src="app.js?v=3600"></script>
+        <script src="app.js?v=3700"></script>
 </body>
 
 </html>

@@ -1413,6 +1413,7 @@ function initLogoParticles() {
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    initSmoothScroll();
     initTheme();
     renderProducts();
     renderReviewsMarquee();
@@ -1424,6 +1425,84 @@ document.addEventListener('DOMContentLoaded', () => {
     initStackedCards();
     initButtonTextRoll();
 });
+
+/* ==========================================
+   LENIS SMOOTH SCROLL ENGINE
+========================================== */
+let lenis = null;
+
+function initSmoothScroll() {
+    if (typeof Lenis === 'undefined') return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    lenis = new Lenis({
+        duration: 1.25,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.5,
+        infinite: false
+    });
+
+    window.lenis = lenis;
+
+    // Connect with GSAP Ticker for ultra-smooth 60/120fps synchronization
+    if (typeof gsap !== 'undefined' && gsap.ticker) {
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+    } else {
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    }
+
+    // Smooth anchor navigation for all internal hash links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#' && href.length > 1) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    // Close mobile nav if open
+                    if (typeof navMenu !== 'undefined' && navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        if (typeof mobileToggle !== 'undefined' && mobileToggle) {
+                            mobileToggle.classList.remove('active');
+                        }
+                    }
+                    lenis.scrollTo(target, {
+                        offset: -40,
+                        duration: 1.3,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                }
+            }
+        });
+    });
+
+    // Auto-stop Lenis when any modal or mobile overlay is active
+    const modalObserver = new MutationObserver(() => {
+        const hasActiveOverlay = document.querySelector('.modal-overlay.active, .mobile-nav.active');
+        if (hasActiveOverlay) {
+            lenis.stop();
+        } else {
+            lenis.start();
+        }
+    });
+
+    document.querySelectorAll('.modal-overlay, .mobile-nav').forEach(el => {
+        modalObserver.observe(el, { attributes: true, attributeFilter: ['class'] });
+    });
+}
 
 /* ==========================================
    GLASS CARDS INTERACTIVITY
@@ -1518,6 +1597,9 @@ function setupStackEffect(cardsSelector, stackSelector, options = {}) {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
+    if (window.lenis) {
+        window.lenis.on('scroll', onScroll);
+    }
     updateStack();
 }
 
